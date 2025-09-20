@@ -1,7 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заглушки SML - ЭНЕКО</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Critical CSS for instant rendering */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        .page-header { 
+            background: linear-gradient(135deg, #0B3D91 0%, #1a4ba3 100%);
+            color: white;
+            padding: 0.5rem 0 2rem 0;
+            text-align: center;
+        }
+        .page-title { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1rem; 
+        }
+        .product-layout { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem; 
+            align-items: center; 
+        }
+        .catalog-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 2rem 0; 
+            background-color: white; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+        }
+        .breadcrumb-section {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+            margin-top: 0;
+        }
+        .product-overview {
+            padding: 0.5rem 0 3rem 0;
+            background: #ffffff;
+        }
+        .product-characteristics {
+            padding: 2rem 0 3rem 0;
+            background: #f8f9fa;
+        }
+        /* Hide content initially to prevent FOUC */
+        .loading-hidden { 
+            opacity: 0; 
+        }
+        .loaded { 
+            opacity: 1 !important; 
+        }
+    </style>
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -335,7 +404,7 @@
         </div>
     </div>
 
-    <script src="components.js"></script>
+    <script src="components.js" defer></script>
     <script>
 
         // Initialize mobile menu
@@ -397,6 +466,14 @@
             initMobileMenu();
         });
     </script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    
+        // Smooth loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show content smoothly after CSS is loaded
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 50);
+        });
 </body>
 </html>

@@ -1,7 +1,66 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Трубы и фитинги SML от ЭНЕКО</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Critical CSS for instant rendering */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        .hero { 
+            background: linear-gradient(135deg, rgba(11, 61, 145, 0.7) 0%, rgba(26, 75, 163, 0.7) 100%), url('images/hero-background.png');
+            background-size: cover;
+            background-position: center center;
+            padding: 120px 0;
+            text-align: center;
+            color: white;
+        }
+        .hero-title { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            color: white; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.2; 
+        }
+        .catalog-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 1.5rem; 
+            margin-top: 3rem; 
+        }
+        .catalog-card { 
+            background-color: white; 
+            border-radius: 8px; 
+            padding: 1.5rem; 
+            text-align: center; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+            transition: all 0.3s ease; 
+            border: 1px solid #e9ecef; 
+        }
+        /* Hide content initially to prevent FOUC */
+        .loading-hidden { 
+            opacity: 0; 
+        }
+        .loaded { 
+            opacity: 1 !important; 
+        }
+    </style>
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -345,8 +404,8 @@
         </div>
     </div>
 
-    <script src="components.js"></script>
-    <script src="script.js"></script>
+    <script src="components.js" defer></script>
+    <script src="script.js" defer></script>
     <script>
         // Contact modal functions for index.html
         function closeContactModal() {
@@ -364,6 +423,14 @@
                 closeContactModal();
             }
         }
+
+        // Smooth loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show content smoothly after CSS is loaded
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 50);
+        });
     </script>
 </body>
 </html>

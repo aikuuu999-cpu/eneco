@@ -136,6 +136,10 @@
     cursor: pointer;
     padding: 0.5rem;
     gap: 4px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu-toggle span {
@@ -262,6 +266,10 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cta-button:hover {
@@ -595,6 +603,11 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
     margin-top: auto;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .catalog-button:hover {
@@ -1026,6 +1039,9 @@ h1, h2, h3, h4, h5, h6 {
         display: block;
         padding: 1rem 0;
         font-size: 1.1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
     }
     
     .nav-list a::after {

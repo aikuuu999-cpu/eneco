@@ -182,28 +182,28 @@ function loadSiteComponents() {
                 metrikaNoscript.innerHTML = '<div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div>';
                 headElement.appendChild(metrikaNoscript);
             }
-            return;
-        }
-        
-        // Если head пустой или неполный, загружаем полный head
-        const existingTitle = headElement.querySelector('title');
-        const titleText = existingTitle ? existingTitle.textContent : 'ЭНЕКО';
-        
-        // Создаем временный div для парсинга HTML
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = SiteComponents.head;
-        
-        // Очищаем head и добавляем новые элементы
-        headElement.innerHTML = '';
-        
-        // Добавляем title первым
-        const newTitle = document.createElement('title');
-        newTitle.textContent = titleText;
-        headElement.appendChild(newTitle);
-        
-        // Добавляем остальные элементы из компонента
-        while (tempDiv.firstChild) {
-            headElement.appendChild(tempDiv.firstChild);
+            // НЕ делаем return здесь, чтобы продолжить загрузку header и footer
+        } else {
+            // Если head пустой или неполный, загружаем полный head
+            const existingTitle = headElement.querySelector('title');
+            const titleText = existingTitle ? existingTitle.textContent : 'ЭНЕКО';
+            
+            // Создаем временный div для парсинга HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = SiteComponents.head;
+            
+            // Очищаем head и добавляем новые элементы
+            headElement.innerHTML = '';
+            
+            // Добавляем title первым
+            const newTitle = document.createElement('title');
+            newTitle.textContent = titleText;
+            headElement.appendChild(newTitle);
+            
+            // Добавляем остальные элементы из компонента
+            while (tempDiv.firstChild) {
+                headElement.appendChild(tempDiv.firstChild);
+            }
         }
     }
     

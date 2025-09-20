@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест мобильной адаптивности - ЭНЕКО</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #0B3D91;
+            font-size: 0.9rem;
+        }
+        .screen-sizes {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .screen-size {
+            background: #0B3D91;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 768px) {
+            .screen-size.tablet { background: #28a745; }
+        }
+        @media (max-width: 480px) {
+            .screen-size.mobile { background: #28a745; }
+        }
+        @media (max-width: 320px) {
+            .screen-size.small { background: #28a745; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Test Info Section -->
+    <section style="padding: 2rem 0; background: white;">
+        <div class="container">
+            <h1>Тест мобильной адаптивности</h1>
+            <div class="test-info">
+                <p><strong>Инструкция:</strong> Измените размер окна браузера или используйте инструменты разработчика для тестирования различных разрешений экрана.</p>
+                <div class="screen-sizes">
+                    <div class="screen-size desktop">Desktop (>768px)</div>
+                    <div class="screen-size tablet">Tablet (≤768px)</div>
+                    <div class="screen-size mobile">Mobile (≤480px)</div>
+                    <div class="screen-size small">Small (≤320px)</div>
+                </div>
+                <p>Зеленый цвет показывает текущий активный брейкпоинт.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section Test -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Тест Hero секции</h1>
+                <p class="hero-subtitle">Проверка адаптивности главного баннера</p>
+                <button class="cta-button" onclick="alert('Кнопка работает!')">Тест кнопки</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Grid Test -->
+    <section class="catalogs">
+        <div class="container">
+            <h2 class="section-title">Тест сетки каталогов</h2>
+            <div class="catalog-grid">
+                <div class="catalog-card">
+                    <div class="catalog-image">
+                        <div class="placeholder-image sml-pipe">ТЕСТ 1</div>
+                    </div>
+                    <h3>Тестовая карточка 1</h3>
+                    <p>Проверка отображения карточки на разных экранах</p>
+                    <div class="catalog-actions-inline">
+                        <button class="catalog-button">Кнопка 1</button>
+                        <button class="catalog-button secondary">Кнопка 2</button>
+                    </div>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-image">
+                        <div class="placeholder-image sml-elbow">ТЕСТ 2</div>
+                    </div>
+                    <h3>Тестовая карточка 2</h3>
+                    <p>Проверка отображения карточки на разных экранах</p>
+                    <div class="catalog-actions-inline">
+                        <button class="catalog-button">Кнопка 1</button>
+                        <button class="catalog-button secondary">Кнопка 2</button>
+                    </div>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-image">
+                        <div class="placeholder-image sml-tee">ТЕСТ 3</div>
+                    </div>
+                    <h3>Тестовая карточка 3</h3>
+                    <p>Проверка отображения карточки на разных экранах</p>
+                    <div class="catalog-actions-inline">
+                        <button class="catalog-button">Кнопка 1</button>
+                        <button class="catalog-button secondary">Кнопка 2</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Test -->
+    <section style="padding: 3rem 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Тест адаптивной таблицы</h2>
+            <table class="catalog-table">
+                <thead>
+                    <tr>
+                        <th>Артикул</th>
+                        <th>Размер</th>
+                        <th>Вес</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Артикул">TEST-001</td>
+                        <td data-label="Размер">100мм</td>
+                        <td data-label="Вес">5.2кг</td>
+                        <td data-label="Описание">Тестовый элемент для проверки таблицы</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Артикул">TEST-002</td>
+                        <td data-label="Размер">150мм</td>
+                        <td data-label="Вес">8.1кг</td>
+                        <td data-label="Описание">Второй тестовый элемент</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Contact Section Test -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Тест контактной секции</h2>
+            <div class="contact-content contact-content-centered">
+                <div class="contact-info">
+                    <p>Тестирование контактной информации на мобильных устройствах.</p>
+                    <div class="contact-methods">
+                        <p>Выберите способ связи:</p>
+                        <div class="contact-buttons-inline">
+                            <a href="#" class="contact-button-inline whatsapp">WhatsApp</a>
+                            <a href="#" class="contact-button-inline telegram">Telegram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        // Mobile menu test
+        function initMobileMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const nav = document.querySelector('.nav');
+            
+            if (menuToggle && nav) {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+                
+                const navLinks = document.querySelectorAll('.nav-list a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                    });
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initMobileMenu();
+        });
+    </script>
+</body>
+</html>

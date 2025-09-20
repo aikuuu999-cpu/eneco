@@ -1488,6 +1488,42 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Intermediate screen sizes */
+@media (max-width: 600px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .advantages {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 640px) {
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
 /* Extra small screens (320px and below) */
 @media (max-width: 320px) {
     .container {
@@ -1560,6 +1596,20 @@ h1, h2, h3, h4, h5, h6 {
     
     .modal-header h2 {
         font-size: 1.1rem;
+    }
+    
+    .advantage-item {
+        padding: 0.75rem;
+        gap: 0.6rem;
+    }
+    
+    .advantage-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .advantage-item span {
+        font-size: 0.8rem;
     }
 }
 

@@ -27,10 +27,11 @@ const SiteComponents = {
         })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(104214599, "init", {
+            ssr: true,
+            webvisor: true,
             clickmap: true,
-            trackLinks: true,
             accurateTrackBounce: true,
-            webvisor: true
+            trackLinks: true
         });
     </script>
     <noscript>

@@ -3,10 +3,6 @@ const SiteComponents = {
     head: `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -160,25 +156,14 @@ const SiteComponents = {
 
 // Функция мгновенной загрузки компонентов (синхронная)
 function loadSiteComponents() {
-    // Загружаем head (сохраняя существующий title)
+    // Загружаем head (добавляем только недостающие элементы)
     const headElement = document.head;
     if (headElement) {
-        const existingTitle = headElement.querySelector('title');
-        const titleText = existingTitle ? existingTitle.textContent : 'ЭНЕКО';
-        
         // Создаем временный div для парсинга HTML
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = SiteComponents.head;
         
-        // Очищаем head и добавляем новые элементы
-        headElement.innerHTML = '';
-        
-        // Добавляем title первым
-        const newTitle = document.createElement('title');
-        newTitle.textContent = titleText;
-        headElement.appendChild(newTitle);
-        
-        // Добавляем остальные элементы из компонента
+        // Добавляем элементы из компонента в конец head
         while (tempDiv.firstChild) {
             headElement.appendChild(tempDiv.firstChild);
         }

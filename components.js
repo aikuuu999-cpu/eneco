@@ -59,7 +59,6 @@ const SiteComponents = {
                 <div class="footer-section">
                     <div class="footer-logo">
                         <img src="logos/logo.png" alt="ENECCO trade house" class="footer-logo-img">
-                        <h3>ЭНЕКО</h3>
                     </div>
                     <p class="footer-description">
                         Профессиональные решения для строительных компаний и дистрибьюторов. 
@@ -71,9 +70,6 @@ const SiteComponents = {
                     <h4>Продукция</h4>
                     <ul class="footer-links">
                         <li><a href="index.html#catalogs">Каталоги</a></li>
-                        <li><a href="sml-pipes.html">Трубы SML</a></li>
-                        <li><a href="elbows.html">Отводы SML</a></li>
-                        <li><a href="sml-fittings.html">Фасонные части SML</a></li>
                         <li><a href="index.html#about">О продукции SML</a></li>
                     </ul>
                 </div>
@@ -111,8 +107,6 @@ const SiteComponents = {
                     <ul class="footer-links">
                         <li><a href="index.html#contact">Обратная связь</a></li>
                         <li><a href="#" onclick="downloadCatalog()">Получить каталог</a></li>
-                        <li><a href="#">Техническая поддержка</a></li>
-                        <li><a href="#">Доставка и оплата</a></li>
                     </ul>
                 </div>
             </div>
@@ -120,7 +114,7 @@ const SiteComponents = {
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <p class="copyright">
-                        © 2024 ЭНЕКО. Все права защищены. 
+                        © 2024. Все права защищены. 
                         <a href="#">Политика конфиденциальности</a> | 
                         <a href="#">Пользовательское соглашение</a>
                     </p>

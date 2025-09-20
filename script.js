@@ -244,7 +244,14 @@ function downloadCatalog() {
         document.body.style.overflow = 'hidden';
     } else {
         // Fallback if modal is not found
-        alert('Свяжитесь с нами для получения каталога:\nWhatsApp: +7 908 974-36-35\nTelegram: @username');
+        showContactAlert();
+    }
+}
+
+// Contact alert with clickable phone
+function showContactAlert() {
+    if (confirm('Свяжитесь с нами для получения каталога:\nWhatsApp: +7 908 974-36-35\nTelegram: @username\n\nНажмите OK, чтобы позвонить')) {
+        window.location.href = 'tel:+79089743635';
     }
 }
 

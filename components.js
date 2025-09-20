@@ -17,36 +17,42 @@ const SiteComponents = {
     
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-        m[i].l = 1 * new Date();
-
-        k = e.createElement(t);
-        a = e.getElementsByTagName(t)[0];
-        k.async = 1;
-        k.src = r;
-
-        // Инициализация после загрузки скрипта
-        k.onload = function() {
+    (function() {
+        var metrikaId = 104214599;
+        
+        function initYandexMetrika() {
             if (typeof ym !== 'undefined') {
-                ym(104214599, "init", {
+                ym(metrikaId, "init", {
                     clickmap: true,
                     trackLinks: true,
                     accurateTrackBounce: true,
                     webvisor: true
                 });
-                ym(104214599, 'hit', window.location.href);
+                ym(metrikaId, 'hit', window.location.href);
                 console.log('Yandex.Metrika loaded and hit sent');
             } else {
                 console.error('Yandex.Metrika failed to initialize');
             }
+        }
+
+        var script = document.createElement('script');
+        script.src = "https://mc.yandex.ru/metrika/tag.js";
+        script.async = true;
+
+        // Инициализация после загрузки скрипта
+        script.onload = initYandexMetrika;
+        script.onerror = function() {
+            console.error('Failed to load Yandex.Metrika script');
         };
 
-        a.parentNode.insertBefore(k, a);
-    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        document.head.appendChild(script);
+    })();
     </script>
+
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div>
+        <div>
+            <img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" />
+        </div>
     </noscript>
     <!-- /Yandex.Metrika counter -->`,
 

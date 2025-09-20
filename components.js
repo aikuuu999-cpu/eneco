@@ -35,11 +35,16 @@ const SiteComponents = {
         });
         
         // Debug: проверяем загрузку метрики
-        if (typeof ym !== 'undefined') {
-            console.log('Yandex.Metrika loaded successfully');
-        } else {
-            console.error('Yandex.Metrika failed to load');
-        }
+        setTimeout(function() {
+            if (typeof ym !== 'undefined') {
+                console.log('Yandex.Metrika loaded successfully');
+                // Дополнительная проверка инициализации
+                ym(104214599, 'hit', window.location.href);
+                console.log('Yandex.Metrika hit sent for:', window.location.href);
+            } else {
+                console.error('Yandex.Metrika failed to load');
+            }
+        }, 1000);
     </script>
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div>

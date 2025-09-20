@@ -7,39 +7,7 @@ const SiteComponents = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-
-            k=e.createElement(t);
-            a=e.getElementsByTagName(t)[0];
-            k.async=1;
-            k.src=r;
-
-            // Инициализация после загрузки скрипта
-            k.onload = function() {
-                if (typeof ym !== 'undefined') {
-                    ym(104214599, 'init', {
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true,
-                        webvisor:true
-                    });
-                    ym(104214599,'hit',window.location.href);
-                    console.log('Yandex.Metrika loaded and hit sent');
-                } else {
-                    console.error('Yandex.Metrika failed to initialize');
-                }
-            };
-
-            a.parentNode.insertBefore(k,a);
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->`,
+`,
 
     header: `
     <!-- Header -->

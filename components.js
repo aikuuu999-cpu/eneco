@@ -5,7 +5,7 @@ const SiteComponents = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
-        script-src 'self' 'unsafe-inline' https://mc.yandex.ru;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://mc.yandex.ru;
         img-src 'self' data: https:;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
         font-src 'self' https://fonts.gstatic.com;

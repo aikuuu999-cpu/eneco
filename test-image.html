@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест изображения - ЭНЕКО</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        
+        .test-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+        }
+        
+        .test-title {
+            color: #0B3D91;
+            margin-bottom: 1rem;
+        }
+        
+        .image-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .image-box {
+            text-align: center;
+        }
+        
+        .image-box h4 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .test-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid #0B3D91;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; color: #0B3D91; margin-bottom: 2rem;">Тест адаптации изображений</h1>
+        
+        <div class="test-section">
+            <h2 class="test-title">1. Изображение в каталоге (главная страница)</h2>
+            <div class="image-comparison">
+                <div class="image-box">
+                    <h4>С placeholder (если изображение не загружено)</h4>
+                    <div class="placeholder-image sml-pipe">ТРУБЫ SML</div>
+                </div>
+                <div class="image-box">
+                    <h4>С реальным изображением</h4>
+                    <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image sml-pipe" style="display: none;">ТРУБЫ SML</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <strong>Настройки:</strong> Ширина 100%, высота 120px, object-fit: cover, border-radius: 6px
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">2. Адаптивность на разных экранах</h2>
+            <div class="image-box">
+                <h4>Изображение адаптируется автоматически:</h4>
+                <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image">
+                <div class="info-box">
+                    <strong>Адаптивные размеры:</strong><br>
+                    • Десктоп: 120px высота<br>
+                    • Планшет (768px): 100px высота<br>
+                    • Мобильный (480px): 80px высота
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">3. Эффекты при наведении</h2>
+            <div class="image-box">
+                <h4>Наведите курсор на изображение:</h4>
+                <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image">
+                <div class="info-box">
+                    <strong>Эффект:</strong> Увеличение на 5% при наведении (transform: scale(1.05))
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">4. Проверка загрузки</h2>
+            <div class="image-box">
+                <h4>Если изображение не найдено:</h4>
+                <img src="images/pipes/nonexistent-image.jpg" alt="Несуществующее изображение" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="placeholder-image sml-pipe" style="display: none;">ТРУБЫ SML</div>
+                <div class="info-box">
+                    <strong>Fallback:</strong> Автоматически показывается placeholder с текстом "ТРУБЫ SML"
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="index.html" style="display: inline-block; background: #0B3D91; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; font-weight: 600;">← Вернуться на главную</a>
+        </div>
+    </div>
+</body>
+</html>

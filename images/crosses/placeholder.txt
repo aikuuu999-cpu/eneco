@@ -1,0 +1,8 @@
+Placeholder for cross images
+
+This directory will contain images for SML crosses catalog:
+- sml-crosses-main.png - main image for crosses catalog card
+- Additional product images can be added here
+
+Images should be in PNG format with transparent backgrounds where possible.
+Recommended dimensions: 800x600px or similar aspect ratio.

@@ -565,34 +565,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize header scroll effect
     initHeaderScroll();
     
-    // Add fade-in animation to sections
-    const sections = document.querySelectorAll('section');
+    // Add fade-in animation to sections (only for sections that are not immediately visible)
+    const sections = document.querySelectorAll('section:not(.hero):not(.breadcrumb-section):not(.page-header):not(.product-overview)');
     
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animated');
             }
         });
     }, observerOptions);
     
+    // Only apply animation to sections that are further down the page
     sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Only hide sections that are below the fold
+        if (rect.top > windowHeight) {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        }
     });
     
-    // Hero section should be visible immediately
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.style.opacity = '1';
-        heroSection.style.transform = 'translateY(0)';
-    }
+    // Ensure critical sections are always visible
+    const criticalSections = document.querySelectorAll('.hero, .breadcrumb-section, .page-header, .product-overview, .product-characteristics');
+    criticalSections.forEach(section => {
+        if (section) {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        }
+    });
 });

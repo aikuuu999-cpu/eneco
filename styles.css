@@ -191,6 +191,7 @@ body {
     color: #333333;
     background-color: #ffffff;
     padding-top: 80px; /* Отступ для фиксированной шапки */
+    min-height: 100vh; /* Обеспечиваем минимальную высоту страницы */
 }
 
 .container {
@@ -216,6 +217,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     margin-bottom: 1rem;
+}
+
+/* Обеспечиваем видимость всех секций по умолчанию */
+section {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responsive typography */

@@ -726,69 +726,101 @@ h1, h2, h3, h4, h5, h6 {
     .catalog-table {
         border: 0;
         margin: 1rem 0;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .catalog-table thead,
-    .catalog-table tbody,
-    .catalog-table tr {
-        display: block;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     
     .catalog-table thead {
         background: #0B3D91;
-        border-radius: 8px 8px 0 0;
-        margin-bottom: 0;
-    }
-    
-    .catalog-table thead tr {
-        display: flex;
-        padding: 0;
-        margin: 0;
     }
     
     .catalog-table th {
-        flex: 1;
-        padding: 0.8rem 0.5rem;
-        font-size: 0.8rem;
+        padding: 0.7rem 0.4rem;
+        font-size: 0.75rem;
         text-align: center;
         border: none;
         color: white;
         font-weight: 600;
+        vertical-align: middle;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Fixed column widths for alignment - 5 columns */
+    .catalog-table th:nth-child(1),
+    .catalog-table td:nth-child(1) {
+        width: 15%; /* Артикул */
+        min-width: 60px;
+    }
+    
+    .catalog-table th:nth-child(2),
+    .catalog-table td:nth-child(2) {
+        width: 12%; /* DN, мм */
+        min-width: 50px;
+    }
+    
+    .catalog-table th:nth-child(3),
+    .catalog-table td:nth-child(3) {
+        width: 12%; /* кг/шт или другие размеры */
+        min-width: 50px;
+    }
+    
+    .catalog-table th:nth-child(4),
+    .catalog-table td:nth-child(4) {
+        width: 12%; /* X, мм или другие размеры */
+        min-width: 50px;
+    }
+    
+    .catalog-table th:nth-child(5),
+    .catalog-table td:nth-child(5) {
+        width: 49%; /* Наименование */
+        min-width: 120px;
+    }
+    
+    /* For tables with 6 columns */
+    .catalog-table th:nth-child(6),
+    .catalog-table td:nth-child(6) {
+        width: 37%; /* Наименование */
+        min-width: 100px;
+    }
+    
+    /* Adjust other columns when 6th column exists */
+    .catalog-table th:nth-child(5):nth-last-child(2),
+    .catalog-table td:nth-child(5):nth-last-child(2) {
+        width: 12%; /* 5й столбец когда есть 6й */
+        min-width: 50px;
     }
     
     .catalog-table tbody tr {
-        border: 1px solid #e9ecef;
-        border-top: none;
-        margin-bottom: 0;
-        padding: 0;
         background: white;
-        display: flex;
-        align-items: stretch;
+        border-bottom: 1px solid #e9ecef;
     }
     
-    .catalog-table tbody tr:last-child {
-        border-radius: 0 0 8px 8px;
+    .catalog-table tbody tr:hover {
+        background-color: #f8f9fa;
     }
     
     .catalog-table td {
-        flex: 1;
-        padding: 0.8rem 0.5rem;
-        font-size: 0.8rem;
+        padding: 0.7rem 0.4rem;
+        font-size: 0.75rem;
         text-align: center;
         border: none;
         border-right: 1px solid #f0f0f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        word-break: break-word;
+        vertical-align: middle;
+        word-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.2;
     }
     
     .catalog-table td:last-child {
         border-right: none;
+        text-align: left;
+        padding-left: 0.5rem;
     }
     
     .catalog-table td:before {
@@ -806,12 +838,18 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) {
     .catalog-table th,
     .catalog-table td {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.3rem;
+        font-size: 0.65rem;
+        padding: 0.5rem 0.2rem;
     }
     
     .catalog-table th {
-        padding: 0.7rem 0.3rem;
+        padding: 0.6rem 0.2rem;
+        line-height: 1.1;
+    }
+    
+    .catalog-table td:last-child {
+        padding-left: 0.3rem;
+        font-size: 0.6rem;
     }
 }
 
@@ -1597,6 +1635,14 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     /* Switch to card layout for tables on very small screens */
+    .catalog-table {
+        display: block;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        table-layout: auto;
+    }
+    
     .catalog-table,
     .catalog-table thead,
     .catalog-table tbody,
@@ -1604,12 +1650,14 @@ h1, h2, h3, h4, h5, h6 {
     .catalog-table td,
     .catalog-table th {
         display: block;
+        width: 100%;
     }
     
     .catalog-table thead {
         position: absolute;
         top: -9999px;
         left: -9999px;
+        background: none;
     }
     
     .catalog-table tr {
@@ -1628,6 +1676,9 @@ h1, h2, h3, h4, h5, h6 {
         border-bottom: 1px solid #f0f0f0;
         display: block;
         font-size: 0.8rem;
+        width: 100%;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
     .catalog-table td:last-child {

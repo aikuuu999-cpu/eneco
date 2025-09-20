@@ -795,16 +795,6 @@
 
     <script src="components.js"></script>
     <script>
-        function downloadCatalog() {
-            const modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                // Fallback if modal is not found
-                showContactAlert();
-            }
-        }
 
 
         // Initialize mobile menu
@@ -875,5 +865,6 @@
             initMobileMenu();
         });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>

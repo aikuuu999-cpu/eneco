@@ -17,34 +17,33 @@ const SiteComponents = {
     
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-        (function (m, e, t, r, i) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date();
-            var s = e.createElement(t), f = e.getElementsByTagName(t)[0];
-            s.async = 1;
-            s.src = r;
-            f.parentNode.insertBefore(s, f);
-        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date();
 
-        ym(104214599, "init", {
-            ssr: true,
-            webvisor: true,
-            clickmap: true,
-            accurateTrackBounce: true,
-            trackLinks: true
-        });
-        
-        // Debug: проверяем загрузку метрики
-        setTimeout(function() {
+        k = e.createElement(t);
+        a = e.getElementsByTagName(t)[0];
+        k.async = 1;
+        k.src = r;
+
+        // Инициализация после загрузки скрипта
+        k.onload = function() {
             if (typeof ym !== 'undefined') {
-                console.log('Yandex.Metrika loaded successfully');
-                // Дополнительная проверка инициализации
+                ym(104214599, "init", {
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true,
+                    webvisor: true
+                });
                 ym(104214599, 'hit', window.location.href);
-                console.log('Yandex.Metrika hit sent for:', window.location.href);
+                console.log('Yandex.Metrika loaded and hit sent');
             } else {
-                console.error('Yandex.Metrika failed to load');
+                console.error('Yandex.Metrika failed to initialize');
             }
-        }, 1000);
+        };
+
+        a.parentNode.insertBefore(k, a);
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
     </script>
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div>

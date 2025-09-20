@@ -505,9 +505,17 @@ function initMobileMenu() {
         nav.classList.remove('active');
         menuToggle.classList.remove('active');
         
-        menuToggle.addEventListener('click', function() {
+        // Remove existing event listeners to prevent duplicates
+        const newMenuToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+        
+        // Add click event to menu toggle
+        newMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             nav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+            newMenuToggle.classList.toggle('active');
         });
         
         // Close menu when clicking on nav links
@@ -515,15 +523,15 @@ function initMobileMenu() {
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 nav.classList.remove('active');
-                menuToggle.classList.remove('active');
+                newMenuToggle.classList.remove('active');
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+            if (!nav.contains(event.target) && !newMenuToggle.contains(event.target)) {
                 nav.classList.remove('active');
-                menuToggle.classList.remove('active');
+                newMenuToggle.classList.remove('active');
             }
         });
         
@@ -531,7 +539,7 @@ function initMobileMenu() {
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 nav.classList.remove('active');
-                menuToggle.classList.remove('active');
+                newMenuToggle.classList.remove('active');
             }
         });
     }
@@ -559,8 +567,10 @@ function initHeaderScroll() {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize mobile menu (components уже загружены из components.js)
-    initMobileMenu();
+    // Wait for components to load, then initialize mobile menu
+    setTimeout(() => {
+        initMobileMenu();
+    }, 100);
     
     // Initialize header scroll effect
     initHeaderScroll();

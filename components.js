@@ -10,43 +10,15 @@ const SiteComponents = {
     
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-    (function() {
-        var metrikaId = 104214599;
-        
-        function initYandexMetrika() {
-            if (typeof ym !== 'undefined') {
-                ym(metrikaId, "init", {
-                    clickmap: true,
-                    trackLinks: true,
-                    accurateTrackBounce: true,
-                    webvisor: true
-                });
-                ym(metrikaId, 'hit', window.location.href);
-                console.log('Yandex.Metrika loaded and hit sent');
-            } else {
-                console.error('Yandex.Metrika failed to initialize');
-            }
-        }
-
-        var script = document.createElement('script');
-        script.src = "https://mc.yandex.ru/metrika/tag.js";
-        script.async = true;
-
-        // Инициализация после загрузки скрипта
-        script.onload = initYandexMetrika;
-        script.onerror = function() {
-            console.error('Failed to load Yandex.Metrika script');
-        };
-
-        document.head.appendChild(script);
-    })();
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104214599', 'ym');
+        ym(104214599, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
     </script>
-
-    <noscript>
-        <div>
-            <img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" />
-        </div>
-    </noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->`,
 
     header: `

@@ -129,6 +129,19 @@ function loadSiteComponents() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
         headerPlaceholder.innerHTML = SiteComponents.header;
+        
+        // Убеждаемся, что мобильное меню скрыто по умолчанию
+        setTimeout(() => {
+            const nav = document.querySelector('.nav');
+            const menuToggle = document.getElementById('menuToggle');
+            if (nav && window.innerWidth <= 768) {
+                nav.classList.remove('active');
+                nav.style.display = 'none';
+            }
+            if (menuToggle && window.innerWidth <= 768) {
+                menuToggle.classList.remove('active');
+            }
+        }, 10);
     }
     
     // Загружаем footer

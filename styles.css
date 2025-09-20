@@ -753,18 +753,26 @@ h1, h2, h3, h4, h5, h6 {
         table-layout: fixed;
         border-collapse: separate;
         border-spacing: 0;
-        border-radius: 8px;
+        border-radius: 6px;
         overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        font-size: 0.7rem;
+        background: white;
     }
+    
+    /* Improve header appearance */
+    .catalog-table thead {
+        background: linear-gradient(135deg, #0B3D91 0%, #1a4ba3 100%);
+    }
+    
     
     .catalog-table thead {
         background: #0B3D91;
     }
     
     .catalog-table th {
-        padding: 0.7rem 0.4rem;
-        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+        font-size: 0.65rem;
         text-align: center;
         border: none;
         color: white;
@@ -772,51 +780,49 @@ h1, h2, h3, h4, h5, h6 {
         vertical-align: middle;
         word-wrap: break-word;
         hyphens: auto;
+        line-height: 1.1;
     }
     
-    /* Fixed column widths for alignment - 5 columns */
+    /* Optimized mobile-first column system */
+    .catalog-table th,
+    .catalog-table td {
+        width: auto;
+        min-width: 0;
+        max-width: none;
+    }
+    
+    /* First column (Артикул) - more compact */
     .catalog-table th:nth-child(1),
     .catalog-table td:nth-child(1) {
-        width: 15%; /* Артикул */
-        min-width: 60px;
+        width: 65px;
+        min-width: 65px;
+        max-width: 65px;
     }
     
+    /* Numeric columns - smaller and more compact */
     .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2) {
-        width: 12%; /* DN, мм */
-        min-width: 50px;
-    }
-    
+    .catalog-table td:nth-child(2),
     .catalog-table th:nth-child(3),
-    .catalog-table td:nth-child(3) {
-        width: 12%; /* кг/шт или другие размеры */
-        min-width: 50px;
-    }
-    
+    .catalog-table td:nth-child(3),
     .catalog-table th:nth-child(4),
-    .catalog-table td:nth-child(4) {
-        width: 12%; /* X, мм или другие размеры */
-        min-width: 50px;
-    }
-    
+    .catalog-table td:nth-child(4),
     .catalog-table th:nth-child(5),
-    .catalog-table td:nth-child(5) {
-        width: 49%; /* Наименование */
-        min-width: 120px;
-    }
-    
-    /* For tables with 6 columns */
+    .catalog-table td:nth-child(5),
     .catalog-table th:nth-child(6),
     .catalog-table td:nth-child(6) {
-        width: 37%; /* Наименование */
-        min-width: 100px;
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
     }
     
-    /* Adjust other columns when 6th column exists */
-    .catalog-table th:nth-child(5):nth-last-child(2),
-    .catalog-table td:nth-child(5):nth-last-child(2) {
-        width: 12%; /* 5й столбец когда есть 6й */
-        min-width: 50px;
+    /* Last column (Наименование) - more space for text */
+    .catalog-table th:last-child,
+    .catalog-table td:last-child {
+        width: auto;
+        min-width: 100px;
+        text-align: left;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
     }
     
     .catalog-table tbody tr {
@@ -826,18 +832,27 @@ h1, h2, h3, h4, h5, h6 {
     
     .catalog-table tbody tr:hover {
         background-color: #f8f9fa;
+        transition: background-color 0.2s ease;
+    }
+    
+    .catalog-table tbody tr:nth-child(even) {
+        background-color: #fafbfc;
+    }
+    
+    .catalog-table tbody tr:nth-child(odd) {
+        background-color: white;
     }
     
     .catalog-table td {
-        padding: 0.7rem 0.4rem;
-        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+        font-size: 0.65rem;
         text-align: center;
         border: none;
         border-right: 1px solid #f0f0f0;
         vertical-align: middle;
         word-wrap: break-word;
         hyphens: auto;
-        line-height: 1.2;
+        line-height: 1.1;
     }
     
     .catalog-table td:last-child {
@@ -859,20 +874,61 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
-    .catalog-table th,
-    .catalog-table td {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.2rem;
+    .catalog-table {
+        font-size: 0.55rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 6px;
     }
     
     .catalog-table th {
-        padding: 0.6rem 0.2rem;
-        line-height: 1.1;
+        padding: 0.4rem 0.1rem;
+        font-size: 0.5rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+    
+    .catalog-table td {
+        padding: 0.4rem 0.1rem;
+        font-size: 0.55rem;
+        line-height: 1;
+        white-space: nowrap;
     }
     
     .catalog-table td:last-child {
-        padding-left: 0.3rem;
-        font-size: 0.6rem;
+        padding-left: 0.15rem;
+        padding-right: 0.15rem;
+        white-space: normal;
+        word-wrap: break-word;
+        font-size: 0.5rem;
+    }
+    
+    /* Ultra compact column widths for small screens */
+    .catalog-table th:nth-child(1),
+    .catalog-table td:nth-child(1) {
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
+    }
+    
+    .catalog-table th:nth-child(2),
+    .catalog-table td:nth-child(2),
+    .catalog-table th:nth-child(3),
+    .catalog-table td:nth-child(3),
+    .catalog-table th:nth-child(4),
+    .catalog-table td:nth-child(4),
+    .catalog-table th:nth-child(5),
+    .catalog-table td:nth-child(5),
+    .catalog-table th:nth-child(6),
+    .catalog-table td:nth-child(6) {
+        width: 38px;
+        min-width: 38px;
+        max-width: 38px;
+    }
+    
+    .catalog-table th:last-child,
+    .catalog-table td:last-child {
+        min-width: 80px;
     }
 }
 
@@ -1581,6 +1637,43 @@ h1, h2, h3, h4, h5, h6 {
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    
+    /* Medium mobile table optimization */
+    .catalog-table {
+        font-size: 0.65rem;
+    }
+    
+    .catalog-table th {
+        padding: 0.45rem 0.15rem;
+        font-size: 0.6rem;
+    }
+    
+    .catalog-table td {
+        padding: 0.45rem 0.15rem;
+        font-size: 0.6rem;
+    }
+    
+    .catalog-table th:nth-child(1),
+    .catalog-table td:nth-child(1) {
+        width: 55px;
+        min-width: 55px;
+        max-width: 55px;
+    }
+    
+    .catalog-table th:nth-child(2),
+    .catalog-table td:nth-child(2),
+    .catalog-table th:nth-child(3),
+    .catalog-table td:nth-child(3),
+    .catalog-table th:nth-child(4),
+    .catalog-table td:nth-child(4),
+    .catalog-table th:nth-child(5),
+    .catalog-table td:nth-child(5),
+    .catalog-table th:nth-child(6),
+    .catalog-table td:nth-child(6) {
+        width: 42px;
+        min-width: 42px;
+        max-width: 42px;
     }
 }
 

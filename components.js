@@ -33,6 +33,13 @@ const SiteComponents = {
             accurateTrackBounce: true,
             trackLinks: true
         });
+        
+        // Debug: проверяем загрузку метрики
+        if (typeof ym !== 'undefined') {
+            console.log('Yandex.Metrika loaded successfully');
+        } else {
+            console.error('Yandex.Metrika failed to load');
+        }
     </script>
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div>

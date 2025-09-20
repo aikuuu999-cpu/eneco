@@ -761,30 +761,43 @@ h1, h2, h3, h4, h5, h6 {
         background: white;
     }
     
-    /* Scrollable wrapper */
+    /* Scrollable wrapper - simplified approach */
     .catalog-table {
         display: block;
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
+        white-space: nowrap;
     }
     
     .catalog-table thead,
-    .catalog-table tbody {
-        display: table;
+    .catalog-table tbody,
+    .catalog-table tr {
+        display: block;
+    }
+    
+    .catalog-table thead {
         width: 100%;
-        table-layout: fixed;
-        min-width: 600px;
+    }
+    
+    .catalog-table tbody {
+        width: 100%;
     }
     
     .catalog-table tr {
-        display: table-row;
+        display: flex;
+        width: fit-content;
+        min-width: 100%;
     }
     
     .catalog-table th,
     .catalog-table td {
-        display: table-cell;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-right: 1px solid #f0f0f0;
     }
     
     /* Improve header appearance */
@@ -843,34 +856,44 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 1.1;
     }
     
-    /* Scrollable table column system */
+    /* Fixed column system with exact alignment */
     .catalog-table th,
     .catalog-table td {
+        padding: 0.5rem 0.2rem;
         white-space: nowrap;
-        padding: 0.5rem 0.3rem;
+        text-align: center;
+        font-size: 0.65rem;
+        line-height: 1.1;
     }
     
-    /* First column (Артикул) */
+    /* Column 1: Артикул */
     .catalog-table th:nth-child(1),
     .catalog-table td:nth-child(1) {
         width: 80px;
         min-width: 80px;
-        position: sticky;
-        left: 0;
-        background: inherit;
-        z-index: 2;
+        max-width: 80px;
+        flex: 0 0 80px;
     }
     
-    .catalog-table thead th:nth-child(1) {
-        background: linear-gradient(135deg, #0B3D91 0%, #1a4ba3 100%);
-        z-index: 3;
-    }
-    
-    /* Numeric columns */
+    /* Column 2: DN, мм */
     .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2),
+    .catalog-table td:nth-child(2) {
+        width: 90px;
+        min-width: 90px;
+        max-width: 90px;
+        flex: 0 0 90px;
+    }
+    
+    /* Column 3: кг/шт. */
     .catalog-table th:nth-child(3),
-    .catalog-table td:nth-child(3),
+    .catalog-table td:nth-child(3) {
+        width: 70px;
+        min-width: 70px;
+        max-width: 70px;
+        flex: 0 0 70px;
+    }
+    
+    /* Columns 4-6: Other numeric columns */
     .catalog-table th:nth-child(4),
     .catalog-table td:nth-child(4),
     .catalog-table th:nth-child(5),
@@ -879,20 +902,27 @@ h1, h2, h3, h4, h5, h6 {
     .catalog-table td:nth-child(6) {
         width: 70px;
         min-width: 70px;
-        text-align: center;
+        max-width: 70px;
+        flex: 0 0 70px;
     }
     
-    /* Last column (Наименование) - full width for complete text */
+    /* Last column: Наименование */
     .catalog-table th:last-child,
     .catalog-table td:last-child {
-        width: 250px;
-        min-width: 250px;
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+        flex: 0 0 280px;
         text-align: left;
+        justify-content: flex-start;
         padding-left: 0.5rem;
-        padding-right: 0.5rem;
         white-space: normal;
         word-wrap: break-word;
         line-height: 1.2;
+    }
+    
+    .catalog-table td:last-child {
+        border-right: none;
     }
     
     .catalog-table tbody tr {
@@ -944,49 +974,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
-    .catalog-table {
-        font-size: 0.55rem;
-        min-width: 500px; /* Smaller minimum width for very small screens */
-        border-radius: 6px;
-    }
-    
-    .catalog-table thead,
-    .catalog-table tbody {
-        min-width: 500px;
-    }
-    
-    .catalog-table th {
-        padding: 0.4rem 0.1rem;
-        font-size: 0.5rem;
-        line-height: 1;
-        white-space: nowrap;
-    }
-    
+    .catalog-table th,
     .catalog-table td {
-        padding: 0.4rem 0.1rem;
+        padding: 0.3rem 0.1rem;
         font-size: 0.55rem;
         line-height: 1;
-        white-space: nowrap;
     }
     
-    .catalog-table td:last-child {
-        padding-left: 0.15rem;
-        padding-right: 0.15rem;
-        white-space: normal;
-        word-wrap: break-word;
-        font-size: 0.5rem;
-    }
-    
-    /* Ultra compact column widths for small screens */
     .catalog-table th:nth-child(1),
     .catalog-table td:nth-child(1) {
-        width: 50px;
-        min-width: 50px;
-        max-width: 50px;
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        flex: 0 0 60px;
     }
     
     .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2),
+    .catalog-table td:nth-child(2) {
+        width: 70px;
+        min-width: 70px;
+        max-width: 70px;
+        flex: 0 0 70px;
+    }
+    
     .catalog-table th:nth-child(3),
     .catalog-table td:nth-child(3),
     .catalog-table th:nth-child(4),
@@ -995,14 +1005,19 @@ h1, h2, h3, h4, h5, h6 {
     .catalog-table td:nth-child(5),
     .catalog-table th:nth-child(6),
     .catalog-table td:nth-child(6) {
-        width: 38px;
-        min-width: 38px;
-        max-width: 38px;
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
+        flex: 0 0 50px;
     }
     
     .catalog-table th:last-child,
     .catalog-table td:last-child {
-        min-width: 80px;
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        flex: 0 0 200px;
+        font-size: 0.5rem;
     }
 }
 
@@ -1714,29 +1729,28 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     /* Medium mobile table optimization */
-    .catalog-table {
-        font-size: 0.65rem;
-    }
-    
-    .catalog-table th {
-        padding: 0.45rem 0.15rem;
-        font-size: 0.6rem;
-    }
-    
+    .catalog-table th,
     .catalog-table td {
-        padding: 0.45rem 0.15rem;
+        padding: 0.4rem 0.15rem;
         font-size: 0.6rem;
     }
     
     .catalog-table th:nth-child(1),
     .catalog-table td:nth-child(1) {
-        width: 55px;
-        min-width: 55px;
-        max-width: 55px;
+        width: 70px;
+        min-width: 70px;
+        max-width: 70px;
+        flex: 0 0 70px;
     }
     
     .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2),
+    .catalog-table td:nth-child(2) {
+        width: 80px;
+        min-width: 80px;
+        max-width: 80px;
+        flex: 0 0 80px;
+    }
+    
     .catalog-table th:nth-child(3),
     .catalog-table td:nth-child(3),
     .catalog-table th:nth-child(4),
@@ -1745,9 +1759,18 @@ h1, h2, h3, h4, h5, h6 {
     .catalog-table td:nth-child(5),
     .catalog-table th:nth-child(6),
     .catalog-table td:nth-child(6) {
-        width: 42px;
-        min-width: 42px;
-        max-width: 42px;
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        flex: 0 0 60px;
+    }
+    
+    .catalog-table th:last-child,
+    .catalog-table td:last-child {
+        width: 240px;
+        min-width: 240px;
+        max-width: 240px;
+        flex: 0 0 240px;
     }
 }
 

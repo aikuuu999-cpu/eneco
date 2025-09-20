@@ -994,6 +994,25 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .catalog-card:hover {
+        transform: none;
+    }
+    
+    .catalog-card:active {
+        transform: scale(0.98);
+    }
+    
+    .catalog-button:hover {
+        transform: none;
+    }
+    
+    .catalog-button:active {
+        transform: scale(0.95);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     /* Header mobile styles */
@@ -1251,6 +1270,18 @@ h1, h2, h3, h4, h5, h6 {
     
     .social-links {
         justify-content: center;
+    }
+    
+    /* Improve touch targets */
+    .social-link {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .contact-button-inline,
+    .contact-mini-button {
+        min-height: 44px;
+        padding: 12px 16px;
     }
 }
 
@@ -1689,6 +1720,12 @@ h1, h2, h3, h4, h5, h6 {
 .product-overview {
     padding: 0.5rem 0 3rem 0;
     background: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .product-overview {
+        padding: 1rem 0 2rem 0;
+    }
 }
 
 .product-layout {

@@ -146,9 +146,46 @@ const SiteComponents = {
 
 // Функция мгновенной загрузки компонентов (синхронная)
 function loadSiteComponents() {
-    // Загружаем head (сохраняя существующий title)
+    // Загружаем head (только если он пустой или не содержит основные элементы)
     const headElement = document.head;
     if (headElement) {
+        // Проверяем, есть ли уже основные элементы в head
+        const hasMetaCharset = headElement.querySelector('meta[charset]');
+        const hasViewport = headElement.querySelector('meta[name="viewport"]');
+        const hasStylesheet = headElement.querySelector('link[rel="stylesheet"]');
+        const hasYandexMetrika = headElement.querySelector('script[src*="metrika"]') || headElement.innerHTML.includes('ym(104214599');
+        
+        // Если head уже содержит основные элементы, не перезаписываем его
+        if (hasMetaCharset && hasViewport && hasStylesheet) {
+            // Добавляем только Яндекс.Метрику, если её нет
+            if (!hasYandexMetrika) {
+                const metrikaScript = document.createElement('script');
+                metrikaScript.type = 'text/javascript';
+                metrikaScript.innerHTML = `
+                    (function(m,e,t,r,i,k,a){
+                        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                        m[i].l=1*new Date();
+                        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+                        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+                    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104214599', 'ym');
+                    
+                    ym(104214599, 'init', {
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                `;
+                headElement.appendChild(metrikaScript);
+                
+                const metrikaNoscript = document.createElement('noscript');
+                metrikaNoscript.innerHTML = '<div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div>';
+                headElement.appendChild(metrikaNoscript);
+            }
+            return;
+        }
+        
+        // Если head пустой или неполный, загружаем полный head
         const existingTitle = headElement.querySelector('title');
         const titleText = existingTitle ? existingTitle.textContent : 'ЭНЕКО';
         

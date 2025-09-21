@@ -597,6 +597,12 @@ function showModalWithLoading(modalId, callback) {
 // Page navigation with loading
 function navigateWithLoading(url) {
     PageLoader.show();
+    
+    // Fail-safe: hide loader after 5 seconds if navigation doesn't complete
+    setTimeout(() => {
+        PageLoader.hide();
+    }, 5000);
+    
     window.location.href = url;
 }
 
@@ -667,4 +673,34 @@ document.addEventListener('DOMContentLoaded', function() {
             section.style.transform = 'translateY(0)';
         }
     });
+});
+
+// Handle page show event (including back/forward navigation)
+window.addEventListener('pageshow', function(event) {
+    // Always hide the page loader when page is shown
+    // This handles cases when user navigates back/forward
+    setTimeout(() => {
+        PageLoader.hide();
+    }, 100);
+    
+    // If page was loaded from cache (back/forward navigation)
+    if (event.persisted) {
+        // Ensure the page is fully visible
+        document.body.style.opacity = '1';
+        document.body.classList.add('loaded');
+    }
+});
+
+// Handle page hide event (when leaving the page)
+window.addEventListener('pagehide', function(event) {
+    // Hide loader when leaving the page
+    PageLoader.hide();
+});
+
+// Additional safety net - hide loader on window focus
+window.addEventListener('focus', function() {
+    // Small delay to ensure page is ready
+    setTimeout(() => {
+        PageLoader.hide();
+    }, 200);
 });

@@ -293,16 +293,38 @@
     </script>
     <script src="script.js" defer></script>
     <script>
-        // Smooth loading animation
+                // Enhanced page loader management
+        function hidePageLoader() {
+            if (typeof PageLoader !== 'undefined') {
+                PageLoader.hide();
+            }
+        }
+
+        // Hide loader on DOM ready
         document.addEventListener('DOMContentLoaded', function() {
             // Show content smoothly after CSS is loaded
             setTimeout(function() {
                 document.body.classList.add('loaded');
-                // Hide page loader if it exists
-                if (typeof PageLoader !== 'undefined') {
-                    PageLoader.hide();
-                }
+                hidePageLoader();
             }, 100);
+        });
+
+        // Hide loader on page show (handles back/forward navigation)
+        window.addEventListener('pageshow', function(event) {
+            setTimeout(hidePageLoader, 50);
+            
+            // If page loaded from cache
+            if (event.persisted) {
+                document.body.style.opacity = '1';
+                document.body.classList.add('loaded');
+            }
+        });
+
+        // Additional safety nets
+        window.addEventListener('load', hidePageLoader);
+        window.addEventListener('focus', function() {
+            setTimeout(hidePageLoader, 100);
+        });
         });
     </script></body>
 </html>

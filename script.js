@@ -238,14 +238,7 @@ const catalogData = {
 
 // Download catalog function
 function downloadCatalog() {
-    const modal = document.getElementById('contactModal');
-    if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    } else {
-        // Fallback if modal is not found
-        showContactAlert();
-    }
+    showModalWithLoading('contactModal');
 }
 
 // Contact alert with clickable phone
@@ -276,56 +269,56 @@ function openCatalog(catalogType) {
         return;
     }
     
-    // Check if catalog has subcategories
-    if (catalog.subcategories) {
-        modalContent.innerHTML = `
-            <h2>${catalog.title}</h2>
-            <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
-            
-            <div class="subcategories-grid">
-                ${Object.entries(catalog.subcategories).map(([key, subcategory]) => `
-                    <div class="subcategory-card" onclick="openSubcategory('${catalogType}', '${key}')">
-                        <h3>${subcategory.title}</h3>
-                        <p>${subcategory.description}</p>
-                        <button class="catalog-button">Посмотреть</button>
-                    </div>
-                `).join('')}
-            </div>
-            
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
-            </div>
-        `;
-    } else {
-        // Legacy format for backward compatibility
-        modalContent.innerHTML = `
-            <h2>${catalog.title}</h2>
-            <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
-            
-            <table class="catalog-table">
-                <thead>
-                    <tr>
-                        ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
-                    </tr>
-                </thead>
-                <tbody>
-                    ${catalog.table.rows.map(row => `
-                        <tr>
-                            ${row.map(cell => `<td>${cell}</td>`).join('')}
-                        </tr>
+    // Show modal with loading
+    showModalWithLoading('catalogModal', () => {
+        // Check if catalog has subcategories
+        if (catalog.subcategories) {
+            modalContent.innerHTML = `
+                <h2>${catalog.title}</h2>
+                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
+                
+                <div class="subcategories-grid">
+                    ${Object.entries(catalog.subcategories).map(([key, subcategory]) => `
+                        <div class="subcategory-card" onclick="openSubcategory('${catalogType}', '${key}')">
+                            <h3>${subcategory.title}</h3>
+                            <p>${subcategory.description}</p>
+                            <button class="catalog-button">Посмотреть</button>
+                        </div>
                     `).join('')}
-                </tbody>
-            </table>
-            
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
-                <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
-            </div>
-        `;
-    }
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                    <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
+                </div>
+            `;
+        } else {
+            // Legacy format for backward compatibility
+            modalContent.innerHTML = `
+                <h2>${catalog.title}</h2>
+                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
+                
+                <table class="catalog-table">
+                    <thead>
+                        <tr>
+                            ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${catalog.table.rows.map(row => `
+                            <tr>
+                                ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                    <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
+                    <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
+                </div>
+            `;
+        }
+    });
 }
 
 // Open subcategory
@@ -565,8 +558,67 @@ function initHeaderScroll() {
     });
 }
 
+// Image loading with placeholder
+function initImageLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"], .catalog-main-image');
+    
+    images.forEach(img => {
+        // Add loading placeholder
+        img.classList.add('image-loading');
+        
+        // Remove placeholder when image loads
+        img.addEventListener('load', function() {
+            this.classList.remove('image-loading');
+        });
+        
+        // Handle load errors
+        img.addEventListener('error', function() {
+            this.classList.remove('image-loading');
+        });
+    });
+}
+
+// Enhanced modal loading
+function showModalWithLoading(modalId, callback) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('modal-loading');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Simulate loading time for better UX
+        setTimeout(() => {
+            modal.classList.remove('modal-loading');
+            if (callback) callback();
+        }, 300);
+    }
+}
+
+// Page navigation with loading
+function navigateWithLoading(url) {
+    PageLoader.show();
+    window.location.href = url;
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
+    // Hide page loader after everything is loaded
+    setTimeout(() => {
+        PageLoader.hide();
+    }, 500);
+    
+    // Initialize image loading
+    initImageLoading();
+    
+    // Add loading to catalog links
+    const catalogLinks = document.querySelectorAll('.catalog-card[href]');
+    catalogLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateWithLoading(this.href);
+        });
+    });
+    
     // Wait for components to load, then initialize mobile menu
     setTimeout(() => {
         initMobileMenu();

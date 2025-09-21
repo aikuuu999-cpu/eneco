@@ -160,8 +160,38 @@ function initYandexMetrika() {
     });
 }
 
+// Page loader management
+const PageLoader = {
+    show: function() {
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+            loader.classList.add('active');
+        }
+    },
+    
+    hide: function() {
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+            loader.classList.remove('active');
+        }
+    },
+    
+    create: function() {
+        if (!document.getElementById('page-loader')) {
+            const loader = document.createElement('div');
+            loader.id = 'page-loader';
+            loader.className = 'page-loader';
+            loader.innerHTML = '<div class="loader-spinner"></div>';
+            document.body.appendChild(loader);
+        }
+    }
+};
+
 // Функция мгновенной загрузки компонентов (синхронная)
 function loadSiteComponents() {
+    // Создаем прелоадер если его нет
+    PageLoader.create();
+    
     // Загружаем head (сохраняя существующий title)
     const headElement = document.head;
     if (headElement) {

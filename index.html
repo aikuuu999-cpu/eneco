@@ -22,7 +22,7 @@
             padding: 0 20px; 
         }
         .hero { 
-            background: linear-gradient(135deg, rgba(11, 61, 145, 0.7) 0%, rgba(26, 75, 163, 0.7) 100%), url('images/hero-background.png');
+            background: linear-gradient(135deg, rgba(11, 61, 145, 0.7) 0%, rgba(26, 75, 163, 0.7) 100%), var(--hero-bg, url('images/hero-background.webp'));
             background-size: cover;
             background-position: center center;
             padding: 120px 0;
@@ -83,7 +83,10 @@
                 <!-- Main Categories -->
                 <a href="sml-pipes.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/pipes/sml-pipes-main.webp" type="image/webp">
+                            <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.nextElementSibling.style.display='flex';">
+                        </picture>
                         <div class="placeholder-image sml-pipe" style="display: none;">ТРУБЫ SML</div>
                     </div>
                     <h3>ТРУБЫ SML</h3>
@@ -96,7 +99,10 @@
                 
                 <a href="elbows.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/elbows/sml-elbows-main.png" alt="Отводы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/elbows/sml-elbows-main.webp" type="image/webp">
+                            <img src="images/elbows/sml-elbows-main.png" alt="Отводы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-elbow" style="display: none;">ОТВОДЫ SML</div>
                     </div>
                     <h3>ОТВОДЫ SML</h3>
@@ -109,7 +115,10 @@
                 
                 <a href="tees.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/tees/sml-tees-main.png" alt="Тройники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/tees/sml-tees-main.webp" type="image/webp">
+                            <img src="images/tees/sml-tees-main.png" alt="Тройники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-tee" style="display: none;">ТРОЙНИКИ SML</div>
                     </div>
                     <h3>ТРОЙНИКИ SML</h3>
@@ -122,7 +131,10 @@
                 
                 <a href="crosses.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/crosses/sml-crosses-main.png" alt="Крестовины SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/crosses/sml-crosses-main.webp" type="image/webp">
+                            <img src="images/crosses/sml-crosses-main.png" alt="Крестовины SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-cross" style="display: none;">КРЕСТОВИНЫ SML</div>
                     </div>
                     <h3>КРЕСТОВИНЫ SML</h3>
@@ -135,7 +147,10 @@
                 
                 <a href="support-rings.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/support-rings/support-rings-main.png" alt="Опорные кольца SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/support-rings/support-rings-main.webp" type="image/webp">
+                            <img src="images/support-rings/support-rings-main.png" alt="Опорные кольца SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-support-ring" style="display: none;">ОПОРНЫЕ КОЛЬЦА SML</div>
                     </div>
                     <h3>ОПОРНЫЕ КОЛЬЦА SML</h3>
@@ -148,7 +163,10 @@
                 
                 <a href="support-pipes.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/support-pipes/support-pipes-main.png" alt="Опорные трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/support-pipes/support-pipes-main.webp" type="image/webp">
+                            <img src="images/support-pipes/support-pipes-main.png" alt="Опорные трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-support-pipe" style="display: none;">ОПОРНЫЕ ТРУБЫ SML</div>
                     </div>
                     <h3>ОПОРНЫЕ ТРУБЫ SML</h3>
@@ -161,7 +179,10 @@
                 
                 <a href="revisions.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/revisions/sml-revisions-main.png" alt="Ревизия с круглым отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/revisions/sml-revisions-main.webp" type="image/webp">
+                            <img src="images/revisions/sml-revisions-main.png" alt="Ревизия с круглым отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-revision" style="display: none;">РЕВИЗИЯ SML</div>
                     </div>
                     <h3>РЕВИЗИЯ С КРУГЛЫМ ОТВЕРСТИЕМ SML</h3>
@@ -174,7 +195,10 @@
                 
                 <a href="rect-revisions.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/rect-revisions/rect-revisions-main.png" alt="Ревизия с прямоугольным отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/rect-revisions/rect-revisions-main.webp" type="image/webp">
+                            <img src="images/rect-revisions/rect-revisions-main.png" alt="Ревизия с прямоугольным отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-revision" style="display: none;">РЕВИЗИЯ SML</div>
                     </div>
                     <h3>РЕВИЗИЯ С ПРЯМОУГОЛЬНЫМ ОТВЕРСТИЕМ SML</h3>
@@ -187,7 +211,10 @@
                 
                 <a href="eccentric-reducers.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/eccentric-reducers/eccentric-reducers-main.png" alt="Переходники эксцентрические SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/eccentric-reducers/eccentric-reducers-main.webp" type="image/webp">
+                            <img src="images/eccentric-reducers/eccentric-reducers-main.png" alt="Переходники эксцентрические SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-eccentric-reducer" style="display: none;">ПЕРЕХОДНИКИ ЭКСЦЕНТРИЧЕСКИЕ SML</div>
                     </div>
                     <h3>ПЕРЕХОДНИКИ ЭКСЦЕНТРИЧЕСКИЕ SML</h3>
@@ -200,7 +227,10 @@
                 
                 <a href="plugs.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/plugs/plugs-main.png" alt="Заглушки SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/plugs/plugs-main.webp" type="image/webp">
+                            <img src="images/plugs/plugs-main.png" alt="Заглушки SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-plug" style="display: none;">ЗАГЛУШКИ SML</div>
                     </div>
                     <h3>ЗАГЛУШКИ SML</h3>
@@ -213,7 +243,10 @@
                 
                 <a href="flange-adapters.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/flange-adapters/flange-adapters-main.png" alt="Фланцевые переходники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/flange-adapters/flange-adapters-main.webp" type="image/webp">
+                            <img src="images/flange-adapters/flange-adapters-main.png" alt="Фланцевые переходники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-flange-adapter" style="display: none;">ФЛАНЦЕВЫЕ ПЕРЕХОДНИКИ SML</div>
                     </div>
                     <h3>ФЛАНЦЕВЫЕ ПЕРЕХОДНИКИ SML</h3>
@@ -226,7 +259,10 @@
                 
                 <a href="siphons.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/siphons/siphons-main.png" alt="Сифоны SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/siphons/siphons-main.webp" type="image/webp">
+                            <img src="images/siphons/siphons-main.png" alt="Сифоны SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-siphon" style="display: none;">СИФОНЫ SML</div>
                     </div>
                     <h3>СИФОНЫ SML</h3>
@@ -239,7 +275,10 @@
                 
                 <a href="clamps.html" class="catalog-card">
                     <div class="catalog-image">
-                        <img src="images/clamps/clamps-main.png" alt="Хомуты крепежные SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/clamps/clamps-main.webp" type="image/webp">
+                            <img src="images/clamps/clamps-main.png" alt="Хомуты крепежные SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-clamp" style="display: none;">ХОМУТЫ КРЕПЕЖНЫЕ SML</div>
                     </div>
                     <h3>ХОМУТЫ КРЕПЕЖНЫЕ SML</h3>
@@ -403,6 +442,7 @@
     </div>
 
     <script src="components.js"></script>
+    <script src="image-optimizer.js"></script>
     <script src="script.js" defer></script>
     <script>
         // Contact modal functions for index.html

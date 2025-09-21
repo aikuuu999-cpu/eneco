@@ -101,7 +101,10 @@
             <div class="product-layout">
                 <div class="product-image-section">
                     <div class="product-image-container">
-                        <img src="images/rect-revisions/rect-revisions-main.png" alt="Ревизия с прямоугольным отверстием SML" class="product-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/rect-revisions/rect-revisions-main.webp" type="image/webp">
+                            <img src="images/rect-revisions/rect-revisions-main.png" alt="Ревизия с прямоугольным отверстием SML" class="product-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-revision-large" style="display: none;">РЕВИЗИЯ SML</div>
                     </div>
                 </div>

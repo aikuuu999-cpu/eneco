@@ -101,7 +101,10 @@
             <div class="product-layout">
                 <div class="product-image-section">
                     <div class="product-image-container">
-                        <img src="images/siphons/siphons-main.png" alt="Сифоны SML" class="product-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <picture>
+                            <source srcset="images/siphons/siphons-main.webp" type="image/webp">
+                            <img src="images/siphons/siphons-main.png" alt="Сифоны SML" class="product-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                        </picture>
                         <div class="placeholder-image sml-siphon-large" style="display: none;">СИФОНЫ SML</div>
                     </div>
                 </div>

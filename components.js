@@ -199,13 +199,28 @@ function loadSiteComponents() {
     }
 }
 
+// Добавляем класс для определения поддержки WebP
+function detectWebPSupport() {
+    const webp = new Image();
+    webp.onload = webp.onerror = function () {
+        if (webp.height === 2) {
+            document.documentElement.classList.add('webp-supported');
+        } else {
+            document.documentElement.classList.add('no-webp');
+        }
+    };
+    webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+}
+
 // Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         loadSiteComponents();
         initYandexMetrika();
+        detectWebPSupport();
     });
 } else {
     loadSiteComponents();
     initYandexMetrika();
+    detectWebPSupport();
 }

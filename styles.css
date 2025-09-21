@@ -245,7 +245,7 @@ section {
 .hero {
     background: 
         linear-gradient(135deg, rgba(11, 61, 145, 0.7) 0%, rgba(26, 75, 163, 0.7) 100%),
-        url('images/hero-background.png');
+        var(--hero-bg, url('images/hero-background.webp'));
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -546,6 +546,34 @@ section {
     .catalog-main-image {
         height: 70px;
     }
+}
+
+/* Lazy loading styles */
+img[loading="lazy"] {
+    transition: opacity 0.3s ease;
+}
+
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.lazy.loaded {
+    opacity: 1;
+}
+
+/* Убрана анимация shimmer - только статичный фон во время загрузки */
+img[loading="lazy"]:not(.loaded) {
+    background-color: #f8f9fa;
+}
+
+/* WebP support optimization */
+.webp-supported .catalog-main-image {
+    /* Дополнительные оптимизации для WebP */
+}
+
+.no-webp .catalog-main-image {
+    /* Fallback стили для браузеров без WebP */
 }
 
 .catalog-main-image:hover {

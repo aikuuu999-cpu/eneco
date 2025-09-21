@@ -192,6 +192,13 @@ body {
     background-color: #ffffff;
     padding-top: 80px; /* Отступ для фиксированной шапки */
     min-height: 100vh; /* Обеспечиваем минимальную высоту страницы */
+    opacity: 1; /* По умолчанию видимый */
+    transition: opacity 0.3s ease;
+}
+
+/* Предотвращаем мерцание при загрузке */
+body:not(.loaded) {
+    opacity: 1; /* Оставляем видимым, но с критическими стилями */
 }
 
 .container {

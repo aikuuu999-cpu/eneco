@@ -458,13 +458,8 @@
             }
         }
 
-        // Smooth loading animation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show content smoothly after CSS is loaded
-            setTimeout(function() {
-                document.body.classList.add('loaded');
-            }, 50);
-        });
+        // Smooth loading animation - теперь управляется из components.js
+        // Убираем дублирование, так как загрузка теперь контролируется централизованно
     </script>
 </body>
 </html>

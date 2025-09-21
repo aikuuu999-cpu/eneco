@@ -208,6 +208,9 @@ function loadSiteComponents() {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = SiteComponents.head;
         
+        // Сохраняем существующие критические стили
+        const existingStyles = headElement.querySelectorAll('style');
+        
         // Очищаем head и добавляем новые элементы
         headElement.innerHTML = '';
         
@@ -215,6 +218,11 @@ function loadSiteComponents() {
         const newTitle = document.createElement('title');
         newTitle.textContent = titleText;
         headElement.appendChild(newTitle);
+        
+        // Восстанавливаем критические стили перед добавлением других элементов
+        existingStyles.forEach(style => {
+            headElement.appendChild(style);
+        });
         
         // Добавляем остальные элементы из компонента
         while (tempDiv.firstChild) {
@@ -248,13 +256,52 @@ function detectWebPSupport() {
     webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
 
+// Функция для проверки загрузки CSS
+function ensureCSSLoaded() {
+    return new Promise((resolve) => {
+        const cssLink = document.querySelector('link[href="styles.css"]');
+        if (!cssLink) {
+            // Если CSS еще не загружен, ждем его загрузки
+            const checkCSS = () => {
+                const link = document.querySelector('link[href="styles.css"]');
+                if (link) {
+                    link.onload = resolve;
+                    if (link.sheet) resolve(); // CSS уже загружен
+                } else {
+                    setTimeout(checkCSS, 10);
+                }
+            };
+            checkCSS();
+        } else if (cssLink.sheet) {
+            resolve(); // CSS уже загружен
+        } else {
+            cssLink.onload = resolve;
+        }
+    });
+}
+
 // Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
         loadSiteComponents();
         detectWebPSupport();
+        
+        // Ждем загрузки CSS перед показом контента
+        await ensureCSSLoaded();
+        
+        // Плавно показываем контент
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 50);
     });
 } else {
     loadSiteComponents();
     detectWebPSupport();
+    
+    // Для уже загруженной страницы
+    ensureCSSLoaded().then(() => {
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 50);
+    });
 }

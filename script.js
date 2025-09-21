@@ -295,20 +295,22 @@ function openCatalog(catalogType) {
             <h2>${catalog.title}</h2>
             <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
             
-            <table class="catalog-table">
-                <thead>
-                    <tr>
-                        ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
-                    </tr>
-                </thead>
-                <tbody>
-                    ${catalog.table.rows.map(row => `
+            <div class="table-container">
+                <table class="catalog-table">
+                    <thead>
                         <tr>
-                            ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        ${catalog.table.rows.map(row => `
+                            <tr>
+                                ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
             
             <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
                 <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
@@ -360,20 +362,22 @@ function openSubcategory(catalogType, subcategoryKey) {
             <h2>${subcategory.title}</h2>
             <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${subcategory.description}</p>
             
-            <table class="catalog-table">
-                <thead>
-                    <tr>
-                        ${subcategory.table.headers.map(header => `<th>${header}</th>`).join('')}
-                    </tr>
-                </thead>
-                <tbody>
-                    ${subcategory.table.rows.map(row => `
+            <div class="table-container">
+                <table class="catalog-table">
+                    <thead>
                         <tr>
-                            ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            ${subcategory.table.headers.map(header => `<th>${header}</th>`).join('')}
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        ${subcategory.table.rows.map(row => `
+                            <tr>
+                                ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
             
             <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
                 <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
@@ -401,20 +405,22 @@ function openItem(catalogType, subcategoryKey, itemKey) {
     modalContent.innerHTML = `
         <h2>${item.title}</h2>
         
-        <table class="catalog-table">
-            <thead>
-                <tr>
-                    ${item.table.headers.map(header => `<th>${header}</th>`).join('')}
-                </tr>
-            </thead>
-            <tbody>
-                ${item.table.rows.map(row => `
+        <div class="table-container">
+            <table class="catalog-table">
+                <thead>
                     <tr>
-                        ${row.map(cell => `<td>${cell}</td>`).join('')}
+                        ${item.table.headers.map(header => `<th>${header}</th>`).join('')}
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${item.table.rows.map(row => `
+                        <tr>
+                            ${row.map(cell => `<td>${cell}</td>`).join('')}
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
         
         <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
             <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
@@ -498,9 +504,32 @@ function initMobileMenu() {
         nav.classList.remove('active');
         menuToggle.classList.remove('active');
         
-        menuToggle.addEventListener('click', function() {
-            nav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+        // Force hide menu on page load for mobile
+        if (window.innerWidth <= 768) {
+            nav.style.display = 'none';
+        }
+        
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = nav.classList.contains('active');
+            
+            if (isActive) {
+                // Close menu
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                setTimeout(() => {
+                    nav.style.display = 'none';
+                }, 300);
+            } else {
+                // Open menu
+                nav.style.display = 'block';
+                setTimeout(() => {
+                    nav.classList.add('active');
+                    menuToggle.classList.add('active');
+                }, 10);
+            }
         });
         
         // Close menu when clicking on nav links
@@ -509,6 +538,9 @@ function initMobileMenu() {
             link.addEventListener('click', function() {
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
+                setTimeout(() => {
+                    nav.style.display = 'none';
+                }, 300);
             });
         });
         
@@ -517,14 +549,22 @@ function initMobileMenu() {
             if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
+                setTimeout(() => {
+                    if (window.innerWidth <= 768) {
+                        nav.style.display = 'none';
+                    }
+                }, 300);
             }
         });
         
-        // Close menu when window is resized to desktop size
+        // Handle window resize
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
+                nav.style.display = 'flex'; // Desktop display
+            } else {
+                nav.style.display = 'none'; // Mobile hidden by default
             }
         });
     }

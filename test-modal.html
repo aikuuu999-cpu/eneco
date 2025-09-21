@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест модального окна</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Тест модального окна</h1>
+        <button onclick="downloadCatalog()" class="action-button download">
+            Получить каталог (тест)
+        </button>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal" role="dialog" aria-labelledby="contactModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactModal()" aria-label="Закрыть модальное окно">&times;</span>
+            <div class="modal-header">
+                <h2 id="contactModalTitle">Получить каталог</h2>
+                <p>Свяжитесь с нами для получения актуального каталога продукции</p>
+            </div>
+            <div class="modal-body">
+                <div class="contact-info">
+                    <p>Выберите удобный способ связи:</p>
+                    <div class="contact-buttons">
+                        <a href="https://wa.me/79089743635" target="_blank" class="contact-button whatsapp">
+                            WhatsApp
+                        </a>
+                        <a href="tel:+79089743635" class="contact-button phone">
+                            Телефон
+                        </a>
+                        <a href="mailto:info@eneco.ru" class="contact-button email">
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const contactModal = document.getElementById('contactModal');
+            if (event.target === contactModal) {
+                closeContactModal();
+            }
+        }
+    </script>
+</body>
+</html>

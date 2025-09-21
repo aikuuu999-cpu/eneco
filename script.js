@@ -552,6 +552,14 @@ function initHeaderScroll() {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure catalogs section is visible immediately
+    const catalogsSection = document.querySelector('.catalogs');
+    if (catalogsSection) {
+        catalogsSection.style.opacity = '1';
+        catalogsSection.style.transform = 'translateY(0)';
+        catalogsSection.style.visibility = 'visible';
+    }
+    
     // Initialize mobile menu (components уже загружены из components.js)
     initMobileMenu();
     
@@ -582,10 +590,17 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
     
-    // Hero section should be visible immediately
+    // Hero section and catalogs section should be visible immediately
     const heroSection = document.querySelector('.hero');
+    const catalogsSection = document.querySelector('.catalogs');
+    
     if (heroSection) {
         heroSection.style.opacity = '1';
         heroSection.style.transform = 'translateY(0)';
+    }
+    
+    if (catalogsSection) {
+        catalogsSection.style.opacity = '1';
+        catalogsSection.style.transform = 'translateY(0)';
     }
 });

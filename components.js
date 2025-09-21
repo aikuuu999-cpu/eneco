@@ -138,9 +138,22 @@ function loadSiteComponents() {
     }
 }
 
-// Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
+// Функция для немедленной загрузки компонентов
+function loadComponentsImmediately() {
+    // Попробуем загрузить компоненты сразу
+    loadSiteComponents();
+    
+    // Если элементы еще не готовы, попробуем снова через короткий интервал
+    if (!document.getElementById('header-placeholder') || !document.getElementById('footer-placeholder')) {
+        setTimeout(loadComponentsImmediately, 10);
+    }
+}
+
+// Загружаем компоненты максимально быстро
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadSiteComponents);
+    // Также пытаемся загрузить сразу
+    loadComponentsImmediately();
 } else {
     loadSiteComponents();
 }

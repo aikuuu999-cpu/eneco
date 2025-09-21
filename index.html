@@ -1,67 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Трубы и фитинги SML от ЭНЕКО</title>
-<<<<<<< HEAD
-=======
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Critical CSS for instant rendering */
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: #ffffff;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
-        }
-        .hero { 
-            background: linear-gradient(135deg, rgba(11, 61, 145, 0.7) 0%, rgba(26, 75, 163, 0.7) 100%), var(--hero-bg, url('images/hero-background.webp'));
-            background-size: cover;
-            background-position: center center;
-            padding: 120px 0;
-            text-align: center;
-            color: white;
-        }
-        .hero-title { 
-            font-size: 3.5rem; 
-            font-weight: 700; 
-            color: white; 
-            margin-bottom: 1.5rem; 
-            line-height: 1.2; 
-        }
-        .catalog-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 1.5rem; 
-            margin-top: 3rem; 
-        }
-        .catalog-card { 
-            background-color: white; 
-            border-radius: 8px; 
-            padding: 1.5rem; 
-            text-align: center; 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
-            transition: all 0.3s ease; 
-            border: 1px solid #e9ecef; 
-        }
-        /* Hide content initially to prevent FOUC */
-        .loading-hidden { 
-            opacity: 0; 
-        }
-        .loaded { 
-            opacity: 1 !important; 
-        }
-    </style>
->>>>>>> parent of 2940e07 (1)
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -73,7 +19,7 @@
             <div class="hero-content">
                 <h1 class="hero-title">Трубы и фитинги SML от ЭНЕКО</h1>
                 <p class="hero-subtitle">Профессиональные решения для строительных компаний и дистрибьюторов</p>
-                <button class="cta-button" onclick="downloadCatalog()" aria-label="Получить каталог продукции SML">Получить каталог</button>
+                <button class="cta-button" onclick="downloadCatalog()">Получить каталог</button>
             </div>
         </div>
     </section>
@@ -82,213 +28,174 @@
     <section class="catalogs" id="catalogs">
         <div class="container">
             <h2 class="section-title">КАТАЛОГ SML ПРОДУКЦИИ</h2>
-            <div class="catalog-grid" role="grid" aria-label="Каталог продукции SML">
+            <div class="catalog-grid">
                 <!-- Main Categories -->
-                <a href="sml-pipes.html" class="catalog-card" role="gridcell" aria-label="Трубы SML - элементы системы канализации из литого чугуна">
+                <a href="sml-pipes.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/pipes/sml-pipes-main.webp" type="image/webp">
-                            <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.nextElementSibling.style.display='flex';">
-                        </picture>
+                        <img src="images/pipes/sml-pipes-main.png" alt="Трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-pipe" style="display: none;">ТРУБЫ SML</div>
                     </div>
                     <h3>ТРУБЫ SML</h3>
                     <p>Элементы системы канализации из литого чугуна. Для соединения SML труб между собой применяются современные хомуты.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='sml-pipes.html'" aria-label="Посмотреть ассортимент труб SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог труб SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='sml-pipes.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="elbows.html" class="catalog-card" role="gridcell" aria-label="Отводы SML - фасонные части для изменения направления трубопровода">
+                <a href="elbows.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/elbows/sml-elbows-main.webp" type="image/webp">
-                            <img src="images/elbows/sml-elbows-main.png" alt="Отводы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/elbows/sml-elbows-main.png" alt="Отводы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-elbow" style="display: none;">ОТВОДЫ SML</div>
                     </div>
                     <h3>ОТВОДЫ SML</h3>
                     <p>Фасонные части для изменения направления трубопровода под углами 15°, 30°, 45°, 68° и 88°. Произведены из высококачественного литого чугуна.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='elbows.html'" aria-label="Посмотреть ассортимент отводов SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог отводов SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='elbows.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="tees.html" class="catalog-card" role="gridcell" aria-label="Тройники SML - фасонные части для создания ответвлений в трубопроводных системах">
+                <a href="tees.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/tees/sml-tees-main.webp" type="image/webp">
-                            <img src="images/tees/sml-tees-main.png" alt="Тройники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/tees/sml-tees-main.png" alt="Тройники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-tee" style="display: none;">ТРОЙНИКИ SML</div>
                     </div>
                     <h3>ТРОЙНИКИ SML</h3>
                     <p>Фасонные части для создания ответвлений в трубопроводных системах под углами 45° и 88°. Произведены из высококачественного литого чугуна.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='tees.html'" aria-label="Посмотреть ассортимент тройников SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог тройников SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='tees.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="crosses.html" class="catalog-card" role="gridcell" aria-label="Крестовины SML - фасонные части для создания четырехстороннего соединения">
+                <a href="crosses.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/crosses/sml-crosses-main.webp" type="image/webp">
-                            <img src="images/crosses/sml-crosses-main.png" alt="Крестовины SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/crosses/sml-crosses-main.png" alt="Крестовины SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-cross" style="display: none;">КРЕСТОВИНЫ SML</div>
                     </div>
                     <h3>КРЕСТОВИНЫ SML</h3>
                     <p>Фасонные части для создания четырехстороннего соединения в трубопроводных системах под углами 45° и 70°. Произведены из высококачественного литого чугуна.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='crosses.html'" aria-label="Посмотреть ассортимент крестовин SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог крестовин SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='crosses.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="support-rings.html" class="catalog-card" role="gridcell" aria-label="Опорные кольца SML - элементы крепления для фиксации трубопроводных систем">
+                <a href="support-rings.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/support-rings/support-rings-main.webp" type="image/webp">
-                            <img src="images/support-rings/support-rings-main.png" alt="Опорные кольца SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/support-rings/support-rings-main.png" alt="Опорные кольца SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-support-ring" style="display: none;">ОПОРНЫЕ КОЛЬЦА SML</div>
                     </div>
                     <h3>ОПОРНЫЕ КОЛЬЦА SML</h3>
                     <p>Элементы крепления для фиксации трубопроводных систем SML. Опорные кольца из высококачественного литого чугуна для надежной поддержки труб.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='support-rings.html'" aria-label="Посмотреть ассортимент опорных колец SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог опорных колец SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='support-rings.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="support-pipes.html" class="catalog-card" role="gridcell" aria-label="Опорные трубы SML - специализированные элементы для создания опорных конструкций">
+                <a href="support-pipes.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/support-pipes/support-pipes-main.webp" type="image/webp">
-                            <img src="images/support-pipes/support-pipes-main.png" alt="Опорные трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/support-pipes/support-pipes-main.png" alt="Опорные трубы SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-support-pipe" style="display: none;">ОПОРНЫЕ ТРУБЫ SML</div>
                     </div>
                     <h3>ОПОРНЫЕ ТРУБЫ SML</h3>
                     <p>Специализированные элементы для создания опорных конструкций в трубопроводных системах SML. Опорные трубы из высококачественного литого чугуна.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='support-pipes.html'" aria-label="Посмотреть ассортимент опорных труб SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог опорных труб SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='support-pipes.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="revisions.html" class="catalog-card" role="gridcell" aria-label="Ревизия с круглым отверстием SML - элементы для обслуживания и очистки трубопроводных систем">
+                <a href="revisions.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/revisions/sml-revisions-main.webp" type="image/webp">
-                            <img src="images/revisions/sml-revisions-main.png" alt="Ревизия с круглым отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/revisions/sml-revisions-main.png" alt="Ревизия с круглым отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-revision" style="display: none;">РЕВИЗИЯ SML</div>
                     </div>
                     <h3>РЕВИЗИЯ С КРУГЛЫМ ОТВЕРСТИЕМ SML</h3>
                     <p>Элементы для обслуживания и очистки трубопроводных систем. Ревизии из литого чугуна с круглым твердым отверстием для надежного доступа к системе канализации.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='revisions.html'" aria-label="Посмотреть ассортимент ревизий с круглым отверстием SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог ревизий с круглым отверстием SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='revisions.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="rect-revisions.html" class="catalog-card" role="gridcell" aria-label="Ревизия с прямоугольным отверстием SML - элементы для обслуживания и очистки трубопроводных систем">
+                <a href="rect-revisions.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/rect-revisions/rect-revisions-main.webp" type="image/webp">
-                            <img src="images/rect-revisions/rect-revisions-main.png" alt="Ревизия с прямоугольным отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/rect-revisions/rect-revisions-main.png" alt="Ревизия с прямоугольным отверстием SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-revision" style="display: none;">РЕВИЗИЯ SML</div>
                     </div>
                     <h3>РЕВИЗИЯ С ПРЯМОУГОЛЬНЫМ ОТВЕРСТИЕМ SML</h3>
                     <p>Элементы для обслуживания и очистки трубопроводных систем. Ревизии из литого чугуна с прямоугольным отверстием для надежного доступа к системе канализации.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='rect-revisions.html'" aria-label="Посмотреть ассортимент ревизий с прямоугольным отверстием SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог ревизий с прямоугольным отверстием SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='rect-revisions.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="eccentric-reducers.html" class="catalog-card" role="gridcell" aria-label="Переходники эксцентрические SML - фасонные части для соединения труб разного диаметра">
+                <a href="eccentric-reducers.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/eccentric-reducers/eccentric-reducers-main.webp" type="image/webp">
-                            <img src="images/eccentric-reducers/eccentric-reducers-main.png" alt="Переходники эксцентрические SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/eccentric-reducers/eccentric-reducers-main.png" alt="Переходники эксцентрические SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-eccentric-reducer" style="display: none;">ПЕРЕХОДНИКИ ЭКСЦЕНТРИЧЕСКИЕ SML</div>
                     </div>
                     <h3>ПЕРЕХОДНИКИ ЭКСЦЕНТРИЧЕСКИЕ SML</h3>
                     <p>Фасонные части для соединения труб разного диаметра с эксцентрическим смещением. Переходники из литого чугуна для надежного соединения при изменении диаметра трубопровода.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='eccentric-reducers.html'" aria-label="Посмотреть ассортимент переходников эксцентрических SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог переходников эксцентрических SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='eccentric-reducers.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="plugs.html" class="catalog-card" role="gridcell" aria-label="Заглушки SML - фасонные части для герметичного закрытия трубопроводов">
+                <a href="plugs.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/plugs/plugs-main.webp" type="image/webp">
-                            <img src="images/plugs/plugs-main.png" alt="Заглушки SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/plugs/plugs-main.png" alt="Заглушки SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-plug" style="display: none;">ЗАГЛУШКИ SML</div>
                     </div>
                     <h3>ЗАГЛУШКИ SML</h3>
                     <p>Фасонные части для герметичного закрытия трубопроводов. Заглушки из литого чугуна с прижимными скобами, пресс-заглушки и торцевые заглушки для надежного закрытия системы.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='plugs.html'" aria-label="Посмотреть ассортимент заглушек SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог заглушек SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='plugs.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="flange-adapters.html" class="catalog-card" role="gridcell" aria-label="Фланцевые переходники SML - фасонные части для соединения труб SML с фланцевыми системами">
+                <a href="flange-adapters.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/flange-adapters/flange-adapters-main.webp" type="image/webp">
-                            <img src="images/flange-adapters/flange-adapters-main.png" alt="Фланцевые переходники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/flange-adapters/flange-adapters-main.png" alt="Фланцевые переходники SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-flange-adapter" style="display: none;">ФЛАНЦЕВЫЕ ПЕРЕХОДНИКИ SML</div>
                     </div>
                     <h3>ФЛАНЦЕВЫЕ ПЕРЕХОДНИКИ SML</h3>
                     <p>Фасонные части для соединения труб SML с фланцевыми системами. Переходники из литого чугуна для интеграции систем SML с другими типами трубопроводных систем.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='flange-adapters.html'" aria-label="Посмотреть ассортимент фланцевых переходников SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог фланцевых переходников SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='flange-adapters.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="siphons.html" class="catalog-card" role="gridcell" aria-label="Сифоны SML - специальные фасонные части для создания водяных затворов">
+                <a href="siphons.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/siphons/siphons-main.webp" type="image/webp">
-                            <img src="images/siphons/siphons-main.png" alt="Сифоны SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/siphons/siphons-main.png" alt="Сифоны SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-siphon" style="display: none;">СИФОНЫ SML</div>
                     </div>
                     <h3>СИФОНЫ SML</h3>
                     <p>Специальные фасонные части для создания водяных затворов в канализационных системах. Сифоны дождевых вод и стандартные сифоны SML для защиты от газов и запахов.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='siphons.html'" aria-label="Посмотреть ассортимент сифонов SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог сифонов SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='siphons.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
                 
-                <a href="clamps.html" class="catalog-card" role="gridcell" aria-label="Хомуты крепежные SML - крепежные элементы для надежной фиксации труб">
+                <a href="clamps.html" class="catalog-card">
                     <div class="catalog-image">
-                        <picture>
-                            <source srcset="images/clamps/clamps-main.webp" type="image/webp">
-                            <img src="images/clamps/clamps-main.png" alt="Хомуты крепежные SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
-                        </picture>
+                        <img src="images/clamps/clamps-main.png" alt="Хомуты крепежные SML" class="catalog-main-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="placeholder-image sml-clamp" style="display: none;">ХОМУТЫ КРЕПЕЖНЫЕ SML</div>
                     </div>
                     <h3>ХОМУТЫ КРЕПЕЖНЫЕ SML</h3>
                     <p>Крепежные элементы для надежной фиксации труб SML к стенам и конструкциям. Стандартные и усиленные хомуты из высококачественных материалов.</p>
                     <div class="catalog-actions-inline">
-                        <button class="catalog-button" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='clamps.html'" aria-label="Посмотреть ассортимент хомутов крепежных SML">Посмотреть ассортимент</button>
-                        <button class="catalog-button secondary" onclick="event.preventDefault(); event.stopPropagation(); downloadCatalog()" aria-label="Получить каталог хомутов крепежных SML">Получить каталог</button>
+                        <button class="catalog-button" onclick="event.preventDefault(); window.location.href='clamps.html'">Посмотреть ассортимент</button>
+                        <button class="catalog-button secondary" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</button>
                     </div>
                 </a>
             </div>
@@ -304,7 +211,7 @@
                 
                 <div class="company-advantages">
                     <h3 class="subsection-title">НАШИ ПРЕИМУЩЕСТВА:</h3>
-                    <ul class="advantages-list" role="list" aria-label="Преимущества компании ЭНЕКО">
+                    <ul class="advantages-list">
                         <li>прямая поставка от завода-производителя;</li>
                         <li>качество продукции полностью соответствует европейскому стандарту EN 877;</li>
                         <li>продукция сертифицирована, что подтверждается декларациями о соответствии качества.</li>
@@ -313,49 +220,49 @@
 
                 <div class="pipe-advantages">
                     <h3 class="subsection-title">ПРЕИМУЩЕСТВА ЧУГУННЫХ ТРУБ:</h3>
-                    <div class="advantages-grid" role="grid" aria-label="Преимущества чугунных труб">
-                        <div class="advantage-item" role="gridcell">
-                            <div class="advantage-icon" aria-hidden="true">
+                    <div class="advantages-grid">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M15.5,8L10,13.5L8.5,12L7,13.5L10,16.5L17,9.5L15.5,8Z"/>
                                 </svg>
                             </div>
                             <span>долгий срок службы;</span>
                         </div>
-                        <div class="advantage-item" role="gridcell">
-                            <div class="advantage-icon" aria-hidden="true">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M15.5,8L10,13.5L8.5,12L7,13.5L10,16.5L17,9.5L15.5,8Z"/>
                                 </svg>
                             </div>
                             <span>бесшумная дренажная система;</span>
                         </div>
-                        <div class="advantage-item" role="gridcell">
-                            <div class="advantage-icon" aria-hidden="true">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M15.5,8L10,13.5L8.5,12L7,13.5L10,16.5L17,9.5L15.5,8Z"/>
                                 </svg>
                             </div>
                             <span>противопожарная система производства, огнестойкость;</span>
                         </div>
-                        <div class="advantage-item" role="gridcell">
-                            <div class="advantage-icon" aria-hidden="true">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M15.5,8L10,13.5L8.5,12L7,13.5L10,16.5L17,9.5L15.5,8Z"/>
                                 </svg>
                             </div>
                             <span>антикоррозийное внутреннее и внешнее покрытие;</span>
                         </div>
-                        <div class="advantage-item" role="gridcell">
-                            <div class="advantage-icon" aria-hidden="true">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M15.5,8L10,13.5L8.5,12L7,13.5L10,16.5L17,9.5L15.5,8Z"/>
                                 </svg>
                             </div>
                             <span>экологичность;</span>
                         </div>
-                        <div class="advantage-item" role="gridcell">
-                            <div class="advantage-icon" aria-hidden="true">
+                        <div class="advantage-item">
+                            <div class="advantage-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M15.5,8L10,13.5L8.5,12L7,13.5L10,16.5L17,9.5L15.5,8Z"/>
                                 </svg>
@@ -401,9 +308,9 @@
     </section>
 
     <!-- Modal for Catalog Details -->
-    <div id="catalogModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div id="catalogModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()" aria-label="Закрыть модальное окно">&times;</span>
+            <span class="close" onclick="closeModal()">&times;</span>
             <div id="modalContent"></div>
         </div>
     </div>
@@ -412,11 +319,11 @@
     <div id="footer-placeholder"></div>
 
     <!-- Contact Modal -->
-    <div id="contactModal" class="modal" role="dialog" aria-labelledby="contactModalTitle" aria-hidden="true">
+    <div id="contactModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeContactModal()" aria-label="Закрыть модальное окно">&times;</span>
+            <span class="close" onclick="closeContactModal()">&times;</span>
             <div class="modal-header">
-                <h2 id="contactModalTitle">Получить каталог</h2>
+                <h2>Получить каталог</h2>
                 <p>Свяжитесь с нами для получения актуального каталога продукции</p>
             </div>
             <div class="modal-body">
@@ -437,7 +344,7 @@
                         </a>
                     </div>
                     <div class="contact-details">
-                        <p><strong>Телефон:</strong> <a href="tel:+79089743635">+7 908 974-36-35</a></p>
+                        <p><strong>Телефон:</strong> +7 908 974-36-35</p>
                     </div>
                 </div>
             </div>
@@ -445,8 +352,7 @@
     </div>
 
     <script src="components.js"></script>
-    <script src="image-optimizer.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
     <script>
         // Contact modal functions for index.html
         function closeContactModal() {
@@ -464,9 +370,6 @@
                 closeContactModal();
             }
         }
-
-        // Smooth loading animation - теперь управляется из components.js
-        // Убираем дублирование, так как загрузка теперь контролируется централизованно
     </script>
 </body>
 </html>

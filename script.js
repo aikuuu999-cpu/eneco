@@ -238,13 +238,13 @@ const catalogData = {
 
 // Download catalog function
 function downloadCatalog() {
-    showModalWithLoading('contactModal');
-}
-
-// Contact alert with clickable phone
-function showContactAlert() {
-    if (confirm('Свяжитесь с нами для получения каталога:\nWhatsApp: +7 908 974-36-35\nTelegram: @username\n\nНажмите OK, чтобы позвонить')) {
-        window.location.href = 'tel:+79089743635';
+    const modal = document.getElementById('contactModal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    } else {
+        // Fallback if modal is not found
+        alert('Свяжитесь с нами для получения каталога:\nWhatsApp: +7 908 974-36-35\nTelegram: @username');
     }
 }
 
@@ -269,56 +269,56 @@ function openCatalog(catalogType) {
         return;
     }
     
-    // Show modal with loading
-    showModalWithLoading('catalogModal', () => {
-        // Check if catalog has subcategories
-        if (catalog.subcategories) {
-            modalContent.innerHTML = `
-                <h2>${catalog.title}</h2>
-                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
-                
-                <div class="subcategories-grid">
-                    ${Object.entries(catalog.subcategories).map(([key, subcategory]) => `
-                        <div class="subcategory-card" onclick="openSubcategory('${catalogType}', '${key}')">
-                            <h3>${subcategory.title}</h3>
-                            <p>${subcategory.description}</p>
-                            <button class="catalog-button">Посмотреть</button>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                    <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
-                </div>
-            `;
-        } else {
-            // Legacy format for backward compatibility
-            modalContent.innerHTML = `
-                <h2>${catalog.title}</h2>
-                <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
-                
-                <table class="catalog-table">
-                    <thead>
+    // Check if catalog has subcategories
+    if (catalog.subcategories) {
+        modalContent.innerHTML = `
+            <h2>${catalog.title}</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
+            
+            <div class="subcategories-grid">
+                ${Object.entries(catalog.subcategories).map(([key, subcategory]) => `
+                    <div class="subcategory-card" onclick="openSubcategory('${catalogType}', '${key}')">
+                        <h3>${subcategory.title}</h3>
+                        <p>${subcategory.description}</p>
+                        <button class="catalog-button">Посмотреть</button>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
+            </div>
+        `;
+    } else {
+        // Legacy format for backward compatibility
+        modalContent.innerHTML = `
+            <h2>${catalog.title}</h2>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
+            
+            <table class="catalog-table">
+                <thead>
+                    <tr>
+                        ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${catalog.table.rows.map(row => `
                         <tr>
-                            ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
+                            ${row.map(cell => `<td>${cell}</td>`).join('')}
                         </tr>
-                    </thead>
-                    <tbody>
-                        ${catalog.table.rows.map(row => `
-                            <tr>
-                                ${row.map(cell => `<td>${cell}</td>`).join('')}
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-                
-                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                    <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
-                    <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
-                </div>
-            `;
-        }
-    });
+                    `).join('')}
+                </tbody>
+            </table>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
+                <button class="catalog-button" onclick="closeModal()">Вернуться на главную</button>
+            </div>
+        `;
+    }
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
 // Open subcategory
@@ -498,17 +498,9 @@ function initMobileMenu() {
         nav.classList.remove('active');
         menuToggle.classList.remove('active');
         
-        // Remove existing event listeners to prevent duplicates
-        const newMenuToggle = menuToggle.cloneNode(true);
-        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
-        
-        // Add click event to menu toggle
-        newMenuToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
+        menuToggle.addEventListener('click', function() {
             nav.classList.toggle('active');
-            newMenuToggle.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
         
         // Close menu when clicking on nav links
@@ -516,15 +508,15 @@ function initMobileMenu() {
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 nav.classList.remove('active');
-                newMenuToggle.classList.remove('active');
+                menuToggle.classList.remove('active');
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!nav.contains(event.target) && !newMenuToggle.contains(event.target)) {
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
                 nav.classList.remove('active');
-                newMenuToggle.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
         
@@ -532,7 +524,7 @@ function initMobileMenu() {
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 nav.classList.remove('active');
-                newMenuToggle.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
     }
@@ -558,149 +550,42 @@ function initHeaderScroll() {
     });
 }
 
-// Image loading with placeholder
-function initImageLoading() {
-    const images = document.querySelectorAll('img[loading="lazy"], .catalog-main-image');
-    
-    images.forEach(img => {
-        // Add loading placeholder
-        img.classList.add('image-loading');
-        
-        // Remove placeholder when image loads
-        img.addEventListener('load', function() {
-            this.classList.remove('image-loading');
-        });
-        
-        // Handle load errors
-        img.addEventListener('error', function() {
-            this.classList.remove('image-loading');
-        });
-    });
-}
-
-// Enhanced modal loading
-function showModalWithLoading(modalId, callback) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('modal-loading');
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        // Simulate loading time for better UX
-        setTimeout(() => {
-            modal.classList.remove('modal-loading');
-            if (callback) callback();
-        }, 300);
-    }
-}
-
-// Page navigation with loading
-function navigateWithLoading(url) {
-    PageLoader.show();
-    
-    // Fail-safe: hide loader after 5 seconds if navigation doesn't complete
-    setTimeout(() => {
-        PageLoader.hide();
-    }, 5000);
-    
-    window.location.href = url;
-}
-
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    // Hide page loader after everything is loaded
-    setTimeout(() => {
-        PageLoader.hide();
-    }, 500);
-    
-    // Initialize image loading
-    initImageLoading();
-    
-    // Add loading to catalog links
-    const catalogLinks = document.querySelectorAll('.catalog-card[href]');
-    catalogLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            navigateWithLoading(this.href);
-        });
-    });
-    
-    // Wait for components to load, then initialize mobile menu
-    setTimeout(() => {
-        initMobileMenu();
-    }, 100);
+    // Initialize mobile menu (components уже загружены из components.js)
+    initMobileMenu();
     
     // Initialize header scroll effect
     initHeaderScroll();
     
-    // Add fade-in animation to sections (only for sections that are not immediately visible)
-    const sections = document.querySelectorAll('section:not(.hero):not(.breadcrumb-section):not(.page-header):not(.product-overview)');
+    // Add fade-in animation to sections
+    const sections = document.querySelectorAll('section');
     
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+            if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                entry.target.classList.add('animated');
             }
         });
     }, observerOptions);
     
-    // Only apply animation to sections that are further down the page
     sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Only hide sections that are below the fold
-        if (rect.top > windowHeight) {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
-        }
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
     });
     
-    // Ensure critical sections are always visible
-    const criticalSections = document.querySelectorAll('.hero, .breadcrumb-section, .page-header, .product-overview, .product-characteristics');
-    criticalSections.forEach(section => {
-        if (section) {
-            section.style.opacity = '1';
-            section.style.transform = 'translateY(0)';
-        }
-    });
-});
-
-// Handle page show event (including back/forward navigation)
-window.addEventListener('pageshow', function(event) {
-    // Always hide the page loader when page is shown
-    // This handles cases when user navigates back/forward
-    setTimeout(() => {
-        PageLoader.hide();
-    }, 100);
-    
-    // If page was loaded from cache (back/forward navigation)
-    if (event.persisted) {
-        // Ensure the page is fully visible
-        document.body.style.opacity = '1';
-        document.body.classList.add('loaded');
+    // Hero section should be visible immediately
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.style.opacity = '1';
+        heroSection.style.transform = 'translateY(0)';
     }
-});
-
-// Handle page hide event (when leaving the page)
-window.addEventListener('pagehide', function(event) {
-    // Hide loader when leaving the page
-    PageLoader.hide();
-});
-
-// Additional safety net - hide loader on window focus
-window.addEventListener('focus', function() {
-    // Small delay to ensure page is ready
-    setTimeout(() => {
-        PageLoader.hide();
-    }, 200);
 });

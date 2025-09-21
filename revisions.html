@@ -129,59 +129,59 @@
             
             <!-- Ревизия с круглым твердым отверстием -->
             <h3 class="table-subtitle">Ревизия с круглым твердым отверстием</h3>
-            <table class="catalog-table">
-                <thead>
-                    <tr>
-                        <th>Артикул</th>
-                        <th>DN, мм</th>
-                        <th>кг/шт.</th>
-                        <th>H, мм</th>
-                        <th>d1, мм</th>
-                        <th>d2, мм</th>
-                        <th>L, мм</th>
-                        <th>Наименование</th>
+            <table class="catalog-table" role="table" aria-label="Таблица каталога продукции">
+                <thead role="rowgroup">
+                    <tr role="row">
+                        <th role="columnheader">Артикул</th>
+                        <th role="columnheader">DN, мм</th>
+                        <th role="columnheader">кг/шт.</th>
+                        <th role="columnheader">H, мм</th>
+                        <th role="columnheader">d1, мм</th>
+                        <th role="columnheader">d2, мм</th>
+                        <th role="columnheader">L, мм</th>
+                        <th role="columnheader">Наименование</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>30050</td>
-                        <td>50</td>
-                        <td>2,3</td>
-                        <td>59</td>
-                        <td>53</td>
-                        <td>105</td>
-                        <td>190</td>
-                        <td>Ревизия с круглым отверстием SML DN 50 мм DIN EN 877</td>
+                <tbody role="rowgroup">
+                    <tr role="row">
+                        <td role="gridcell">30050</td>
+                        <td role="gridcell">50</td>
+                        <td role="gridcell">2,3</td>
+                        <td role="gridcell">59</td>
+                        <td role="gridcell">53</td>
+                        <td role="gridcell">105</td>
+                        <td role="gridcell">190</td>
+                        <td role="gridcell">Ревизия с круглым отверстием SML DN 50 мм DIN EN 877</td>
                     </tr>
-                    <tr>
-                        <td>30070</td>
-                        <td>70</td>
-                        <td>2,8</td>
-                        <td>69</td>
-                        <td>73</td>
-                        <td>125</td>
-                        <td>210</td>
-                        <td>Ревизия с круглым отверстием SML DN 70 мм DIN EN 877</td>
+                    <tr role="row">
+                        <td role="gridcell">30070</td>
+                        <td role="gridcell">70</td>
+                        <td role="gridcell">2,8</td>
+                        <td role="gridcell">69</td>
+                        <td role="gridcell">73</td>
+                        <td role="gridcell">125</td>
+                        <td role="gridcell">210</td>
+                        <td role="gridcell">Ревизия с круглым отверстием SML DN 70 мм DIN EN 877</td>
                     </tr>
-                    <tr>
-                        <td>30080</td>
-                        <td>80</td>
-                        <td>3,2</td>
-                        <td>74</td>
-                        <td>78</td>
-                        <td>135</td>
-                        <td>210</td>
-                        <td>Ревизия с круглым отверстием SML DN 80 мм DIN EN 877</td>
+                    <tr role="row">
+                        <td role="gridcell">30080</td>
+                        <td role="gridcell">80</td>
+                        <td role="gridcell">3,2</td>
+                        <td role="gridcell">74</td>
+                        <td role="gridcell">78</td>
+                        <td role="gridcell">135</td>
+                        <td role="gridcell">210</td>
+                        <td role="gridcell">Ревизия с круглым отверстием SML DN 80 мм DIN EN 877</td>
                     </tr>
-                    <tr>
-                        <td>30100</td>
-                        <td>100</td>
-                        <td>4,9</td>
-                        <td>84</td>
-                        <td>104</td>
-                        <td>159</td>
-                        <td>260</td>
-                        <td>Ревизия с круглым отверстием SML DN 100 мм DIN EN 877</td>
+                    <tr role="row">
+                        <td role="gridcell">30100</td>
+                        <td role="gridcell">100</td>
+                        <td role="gridcell">4,9</td>
+                        <td role="gridcell">84</td>
+                        <td role="gridcell">104</td>
+                        <td role="gridcell">159</td>
+                        <td role="gridcell">260</td>
+                        <td role="gridcell">Ревизия с круглым отверстием SML DN 100 мм DIN EN 877</td>
                     </tr>
                 </tbody>
             </table>
@@ -189,8 +189,8 @@
             
             <!-- Action Buttons -->
             <div class="catalog-actions">
-                <button class="action-button download" onclick="downloadCatalog()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <button class="action-button download" onclick="downloadCatalog()" aria-label="Получить каталог">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                     </svg>
                     Получить каталог
@@ -203,25 +203,25 @@
     <div id="footer-placeholder"></div>
 
     <!-- Contact Modal -->
-    <div id="contactModal" class="modal">
+    <div id="contactModal" class="modal" role="dialog" aria-labelledby="contactModalTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close" onclick="closeContactModal()">&times;</span>
+            <span class="close" onclick="closeContactModal()" aria-label="Закрыть модальное окно">&times;</span>
             <div class="modal-header">
-                <h2>Получить каталог</h2>
+                <h2 id="contactModalTitle">Получить каталог</h2>
                 <p>Свяжитесь с нами для получения актуального каталога продукции</p>
             </div>
             <div class="modal-body">
                 <div class="contact-info">
                     <p>Выберите удобный способ связи:</p>
                     <div class="contact-buttons">
-                        <a href="https://wa.me/79089743635" target="_blank" class="contact-button whatsapp">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <a href="https://wa.me/79089743635" target="_blank" class="contact-button whatsapp" aria-label="Связаться через WhatsApp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                             </svg>
                             WhatsApp
                         </a>
-                        <a href="https://t.me/username" target="_blank" class="contact-button telegram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <a href="https://t.me/username" target="_blank" class="contact-button telegram" aria-label="Связаться через Telegram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                             </svg>
                             Telegram

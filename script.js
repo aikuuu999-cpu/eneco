@@ -440,12 +440,17 @@ function orderProduct(catalogType) {
 
 
 // Close modal when clicking outside
-window.onclick = function(event) {
-    const modal = document.getElementById('catalogModal');
-    if (event.target === modal) {
+document.addEventListener('click', function(event) {
+    const catalogModal = document.getElementById('catalogModal');
+    if (event.target === catalogModal) {
         closeModal();
     }
-}
+    
+    const contactModal = document.getElementById('contactModal');
+    if (event.target === contactModal) {
+        closeContactModal();
+    }
+});
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

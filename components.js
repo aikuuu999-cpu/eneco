@@ -208,26 +208,45 @@ function loadSiteComponents() {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = SiteComponents.head;
         
-        // Сохраняем существующие критические стили
-        const existingStyles = headElement.querySelectorAll('style');
+        // НЕ очищаем head полностью, а добавляем только нужные элементы
         
-        // Очищаем head и добавляем новые элементы
-        headElement.innerHTML = '';
+        // Проверяем и добавляем только отсутствующие элементы
+        const elementsToAdd = Array.from(tempDiv.children);
         
-        // Добавляем title первым
-        const newTitle = document.createElement('title');
-        newTitle.textContent = titleText;
-        headElement.appendChild(newTitle);
-        
-        // Восстанавливаем критические стили перед добавлением других элементов
-        existingStyles.forEach(style => {
-            headElement.appendChild(style);
+        elementsToAdd.forEach(element => {
+            // Проверяем, есть ли уже такой элемент
+            const selector = element.tagName.toLowerCase();
+            let exists = false;
+            
+            if (selector === 'meta') {
+                const name = element.getAttribute('name') || element.getAttribute('property') || element.getAttribute('charset');
+                if (name) {
+                    const existing = headElement.querySelector(`meta[name="${name}"], meta[property="${name}"], meta[charset="${name}"]`);
+                    exists = !!existing;
+                }
+            } else if (selector === 'link') {
+                const href = element.getAttribute('href');
+                if (href) {
+                    const existing = headElement.querySelector(`link[href="${href}"]`);
+                    exists = !!existing;
+                }
+            } else if (selector === 'script') {
+                const src = element.getAttribute('src');
+                if (src) {
+                    const existing = headElement.querySelector(`script[src="${src}"]`);
+                    exists = !!existing;
+                } else {
+                    // Inline script - проверяем по содержимому
+                    const content = element.textContent;
+                    const existing = Array.from(headElement.querySelectorAll('script:not([src])')).find(s => s.textContent.includes('ym(104214599'));
+                    exists = !!existing;
+                }
+            }
+            
+            if (!exists) {
+                headElement.appendChild(element.cloneNode(true));
+            }
         });
-        
-        // Добавляем остальные элементы из компонента
-        while (tempDiv.firstChild) {
-            headElement.appendChild(tempDiv.firstChild);
-        }
     }
     
     // Загружаем header

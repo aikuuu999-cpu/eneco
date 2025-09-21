@@ -844,6 +844,20 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Desktop Navigation - ensure it's always visible */
+@media (min-width: 769px) {
+    .nav {
+        display: flex !important;
+        position: static !important;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        background: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     /* Header mobile styles */

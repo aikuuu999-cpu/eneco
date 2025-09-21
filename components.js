@@ -14,13 +14,50 @@ const SiteComponents = {
        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-       ym(104214599, "init", {
-            ssr: true,
-            webvisor: true,
-            clickmap: true,
-            accurateTrackBounce: true,
-            trackLinks: true
-       });
+       
+       // Инициализируем счетчик с задержкой для гарантированной загрузки
+       setTimeout(function() {
+           if (window.ym) {
+               ym(104214599, 'init', {
+                    ssr: true,
+                    webvisor: true,
+                    clickmap: true,
+                    accurateTrackBounce: true,
+                    trackLinks: true,
+                    defer: false
+               });
+               
+               // Для отладки добавляем видимый счетчик
+               if (window.location.search.includes('_ym_debug')) {
+                   var debugDiv = document.createElement('div');
+                   debugDiv.style.cssText = 'position:fixed;top:0;left:0;background:#000;color:#fff;padding:5px;font-size:12px;z-index:9999;';
+                   debugDiv.innerHTML = 'Yandex Metrika Debug: Loaded and initialized';
+                   document.body.appendChild(debugDiv);
+               }
+           } else {
+               // Если ym не загружен, пробуем еще раз через 2 секунды
+               setTimeout(function() {
+                   if (window.ym) {
+                       ym(104214599, 'init', {
+                            ssr: true,
+                            webvisor: true,
+                            clickmap: true,
+                            accurateTrackBounce: true,
+                            trackLinks: true,
+                            defer: false
+                       });
+                   }
+                   
+                   // Для отладки
+                   if (window.location.search.includes('_ym_debug')) {
+                       var debugDiv = document.createElement('div');
+                       debugDiv.style.cssText = 'position:fixed;top:0;left:0;background:#000;color:#fff;padding:5px;font-size:12px;z-index:9999;';
+                       debugDiv.innerHTML = 'Yandex Metrika Debug: ' + (window.ym ? 'Loaded after retry' : 'Failed to load');
+                       document.body.appendChild(debugDiv);
+                   }
+               }, 2000);
+           }
+       }, 500);
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/104214599" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 `,

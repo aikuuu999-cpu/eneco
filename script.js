@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
@@ -584,17 +584,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
-    
-    // Hero section should be visible immediately
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.style.opacity = '1';
-        heroSection.style.transform = 'translateY(0)';
-    }
+    // Use setTimeout to ensure proper layout calculation
+    setTimeout(() => {
+        sections.forEach((section, index) => {
+            // Set transition for smooth animation
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            // Only hide sections that are not initially visible (below fold)
+            // Keep hero and first sections visible immediately
+            if (index > 0) {
+                const rect = section.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const isVisible = rect.top < (viewportHeight * 0.8) && rect.bottom > 0;
+                
+                if (!isVisible) {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(30px)';
+                } else {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            } else {
+                // Hero section is always visible
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+            
+            observer.observe(section);
+        });
+    }, 100);
 });

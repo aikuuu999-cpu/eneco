@@ -166,6 +166,12 @@ body {
     padding-top: 80px; /* Отступ для фиксированной шапки */
 }
 
+/* Ensure smooth loading for all sections */
+section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

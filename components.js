@@ -265,17 +265,40 @@ function ensureCSSLoaded() {
             const checkCSS = () => {
                 const link = document.querySelector('link[href="styles.css"]');
                 if (link) {
+                    try {
+                        if (link.sheet && link.sheet.cssRules && link.sheet.cssRules.length > 0) {
+                            resolve(); // CSS загружен и готов
+                            return;
+                        }
+                    } catch (e) {
+                        // Игнорируем ошибки доступа к cssRules (CORS)
+                    }
                     link.onload = resolve;
-                    if (link.sheet) resolve(); // CSS уже загружен
+                    link.onerror = resolve; // На случай ошибки загрузки
+                    // Дополнительная проверка через таймер
+                    setTimeout(() => {
+                        if (link.sheet) resolve();
+                    }, 100);
                 } else {
                     setTimeout(checkCSS, 10);
                 }
             };
             checkCSS();
-        } else if (cssLink.sheet) {
-            resolve(); // CSS уже загружен
         } else {
+            try {
+                if (cssLink.sheet && cssLink.sheet.cssRules && cssLink.sheet.cssRules.length > 0) {
+                    resolve(); // CSS уже загружен
+                    return;
+                }
+            } catch (e) {
+                // Игнорируем ошибки доступа к cssRules (CORS)
+            }
             cssLink.onload = resolve;
+            cssLink.onerror = resolve;
+            // Дополнительная проверка через таймер
+            setTimeout(() => {
+                if (cssLink.sheet) resolve();
+            }, 100);
         }
     });
 }

@@ -248,121 +248,13 @@ function detectWebPSupport() {
     webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
 
-// Диагностика Яндекс.Метрики
-function diagnoseYandexMetric() {
-    console.log('=== ДИАГНОСТИКА ЯНДЕКС.МЕТРИКИ ===');
-    
-    // 1. Проверка загрузки ym функции
-    console.log('Метрика загружена:', typeof ym !== 'undefined');
-    
-    // 2. Проверка ID счетчика в коде
-    const yandexScript = document.querySelector('script[src*="mc.yandex.ru/metrika/tag.js"]');
-    if (yandexScript) {
-        console.log('Скрипт метрики найден в DOM:', yandexScript.src);
-        const url = new URL(yandexScript.src);
-        const counterId = url.searchParams.get('id');
-        console.log('ID счетчика из URL:', counterId);
-        console.log('ID счетчика корректный (104214599):', counterId === '104214599');
-    } else {
-        console.log('Скрипт метрики НЕ найден в DOM');
-    }
-    
-    // 3. Проверка noscript изображения
-    const noscriptImg = document.querySelector('noscript img[src*="mc.yandex.ru/watch"]');
-    if (noscriptImg) {
-        console.log('Noscript изображение найдено:', noscriptImg.src);
-        const noscriptUrl = new URL(noscriptImg.src);
-        const noscriptId = noscriptUrl.pathname.split('/').pop();
-        console.log('ID счетчика в noscript:', noscriptId);
-        console.log('ID счетчика в noscript корректный (104214599):', noscriptId === '104214599');
-    } else {
-        console.log('Noscript изображение НЕ найдено');
-    }
-    
-    // 4. Проверка CSP ошибок
-    const originalError = window.onerror;
-    window.onerror = function(message, source, lineno, colno, error) {
-        if (message.includes('Content Security Policy') || 
-            message.includes('CSP') || 
-            source.includes('mc.yandex.ru')) {
-            console.error('CSP ошибка обнаружена:', message, source);
-        }
-        if (originalError) {
-            return originalError.apply(this, arguments);
-        }
-        return false;
-    };
-    
-    // 5. Проверка инициализации метрики
-    if (typeof ym !== 'undefined') {
-        console.log('Функция ym доступна');
-        try {
-            // Проверяем что счетчик инициализирован
-            console.log('Попытка инициализации проверки метрики...');
-        } catch (e) {
-            console.error('Ошибка при проверке метрики:', e);
-        }
-    } else {
-        console.log('Функция ym НЕ доступна');
-    }
-    
-    // 6. Проверка загрузки скрипта в Network
-    console.log('Для полной диагностики откройте Network DevTools и проверьте:');
-    console.log('1. Загрузку: https://mc.yandex.ru/metrika/tag.js?id=104214599');
-    console.log('2. Запросы к: mc.yandex.ru/watch/104214599');
-    console.log('3. Отсутствие ошибок 403/404/500');
-    
-    console.log('=== КОНЕЦ ДИАГНОСТИКИ ===');
-}
-
-// Расширенная диагностика после загрузки компонентов
-function diagnoseAfterLoad() {
-    setTimeout(() => {
-        console.log('=== ДИАГНОСТИКА ПОСЛЕ ЗАГРУЗКИ КОМПОНЕНТОВ ===');
-        
-        // Проверяем что код метрики действительно появился в DOM
-        const yandexScripts = document.querySelectorAll('script');
-        let metricScriptFound = false;
-        yandexScripts.forEach(script => {
-            if (script.src && script.src.includes('mc.yandex.ru/metrika/tag.js')) {
-                metricScriptFound = true;
-                console.log('Скрипт метрики найден в DOM после загрузки:', script.src);
-            }
-        });
-        
-        if (!metricScriptFound) {
-            console.error('Скрипт метрики НЕ найден в DOM после загрузки компонентов!');
-        }
-        
-        // Проверяем noscript
-        const noscriptElements = document.querySelectorAll('noscript');
-        let noscriptFound = false;
-        noscriptElements.forEach(noscript => {
-            if (noscript.innerHTML.includes('mc.yandex.ru/watch')) {
-                noscriptFound = true;
-                console.log('Noscript элемент метрики найден в DOM');
-            }
-        });
-        
-        if (!noscriptFound) {
-            console.error('Noscript элемент метрики НЕ найден в DOM!');
-        }
-        
-        console.log('=== КОНЕЦ ДИАГНОСТИКИ ПОСЛЕ ЗАГРУЗКИ ===');
-    }, 1000);
-}
-
 // Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         loadSiteComponents();
         detectWebPSupport();
-        diagnoseYandexMetric();
-        diagnoseAfterLoad();
     });
 } else {
     loadSiteComponents();
     detectWebPSupport();
-    diagnoseYandexMetric();
-    diagnoseAfterLoad();
 }

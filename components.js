@@ -93,7 +93,7 @@ const SiteComponents = {
                     <h4>Информация</h4>
                     <ul class="footer-links">
                         <li><a href="index.html#contact">Обратная связь</a></li>
-                        <li><a href="#" onclick="event.preventDefault(); downloadCatalog()">Получить каталог</a></li>
+                        <li><a href="#" onclick="downloadCatalog()">Получить каталог</a></li>
                     </ul>
                 </div>
             </div>

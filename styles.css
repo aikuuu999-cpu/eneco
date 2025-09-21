@@ -562,9 +562,9 @@ img.lazy.loaded {
     opacity: 1;
 }
 
-/* Убрана анимация shimmer - только статичный фон во время загрузки */
+/* Убрана анимация shimmer - только белый фон во время загрузки */
 img[loading="lazy"]:not(.loaded) {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
 }
 
 /* WebP support optimization */

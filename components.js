@@ -212,12 +212,7 @@ function loadSiteComponents() {
             headElement.appendChild(fontLink);
         }
         
-        if (!hasStyles) {
-            const styleLink = document.createElement('link');
-            styleLink.setAttribute('rel', 'stylesheet');
-            styleLink.setAttribute('href', 'styles.css');
-            headElement.appendChild(styleLink);
-        }
+        // Стили уже загружены в loadCriticalStyles(), пропускаем
         
         // Отмечаем, что компоненты загружены
         headElement.setAttribute('data-components-loaded', 'true');
@@ -249,7 +244,28 @@ function detectWebPSupport() {
     webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
 
-// Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
+// Загружаем критические стили синхронно, остальные компоненты - асинхронно
+function loadCriticalStyles() {
+    const headElement = document.head;
+    if (headElement && !headElement.hasAttribute('data-critical-loaded')) {
+        // Добавляем только критические стили синхронно
+        const hasStyles = headElement.querySelector('link[href="styles.css"]');
+        if (!hasStyles) {
+            const styleLink = document.createElement('link');
+            styleLink.setAttribute('rel', 'stylesheet');
+            styleLink.setAttribute('href', 'styles.css');
+            headElement.appendChild(styleLink);
+        }
+        
+        // Отмечаем, что критические стили загружены
+        headElement.setAttribute('data-critical-loaded', 'true');
+    }
+}
+
+// Загружаем критические стили сразу
+loadCriticalStyles();
+
+// Загружаем остальные компоненты
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         loadSiteComponents();

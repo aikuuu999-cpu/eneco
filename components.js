@@ -7,6 +7,9 @@ const SiteComponents = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Yandex.Metrika debug script -->
+    <script src="https://mc.yandex.ru/metrika/tag_debug.js?ver=2204&b=" type="text/javascript" charset="utf-8" async=""></script>
+    
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){

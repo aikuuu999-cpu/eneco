@@ -10,6 +10,40 @@ const SiteComponents = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Минимальные критические стили для предотвращения FOUC */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff;
+            padding-top: 80px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        body.loaded { 
+            opacity: 1; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .header { height: 70px; }
+        }
+    </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m, e, t, r, i, k, a) {
@@ -275,75 +309,39 @@ function detectWebPSupport() {
     webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
 
-// Функция для проверки загрузки CSS
-function ensureCSSLoaded() {
+// Проверяем готовность CSS
+function waitForCSS() {
     return new Promise((resolve) => {
         const cssLink = document.querySelector('link[href="styles.css"]');
-        if (!cssLink) {
-            // Если CSS еще не загружен, ждем его загрузки
-            const checkCSS = () => {
-                const link = document.querySelector('link[href="styles.css"]');
-                if (link) {
-                    try {
-                        if (link.sheet && link.sheet.cssRules && link.sheet.cssRules.length > 0) {
-                            resolve(); // CSS загружен и готов
-                            return;
-                        }
-                    } catch (e) {
-                        // Игнорируем ошибки доступа к cssRules (CORS)
-                    }
-                    link.onload = resolve;
-                    link.onerror = resolve; // На случай ошибки загрузки
-                    // Дополнительная проверка через таймер
-                    setTimeout(() => {
-                        if (link.sheet) resolve();
-                    }, 100);
-                } else {
-                    setTimeout(checkCSS, 10);
-                }
-            };
-            checkCSS();
-        } else {
-            try {
-                if (cssLink.sheet && cssLink.sheet.cssRules && cssLink.sheet.cssRules.length > 0) {
-                    resolve(); // CSS уже загружен
-                    return;
-                }
-            } catch (e) {
-                // Игнорируем ошибки доступа к cssRules (CORS)
+        if (cssLink) {
+            if (cssLink.sheet) {
+                resolve(); // CSS уже загружен
+            } else {
+                cssLink.onload = resolve;
+                cssLink.onerror = resolve;
             }
-            cssLink.onload = resolve;
-            cssLink.onerror = resolve;
-            // Дополнительная проверка через таймер
-            setTimeout(() => {
-                if (cssLink.sheet) resolve();
-            }, 100);
+        } else {
+            resolve(); // Нет CSS - продолжаем
         }
     });
 }
 
-// Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', async function() {
-        loadSiteComponents();
-        detectWebPSupport();
-        
-        // Ждем загрузки CSS перед показом контента
-        await ensureCSSLoaded();
-        
-        // Плавно показываем контент
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 50);
-    });
-} else {
+// Оптимизированная загрузка компонентов
+async function initializePage() {
+    // Загружаем компоненты синхронно
     loadSiteComponents();
     detectWebPSupport();
     
-    // Для уже загруженной страницы
-    ensureCSSLoaded().then(() => {
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 50);
-    });
+    // Ждем CSS только если его нет
+    await waitForCSS();
+    
+    // Показываем контент без задержки
+    document.body.classList.add('loaded');
+}
+
+// Запускаем инициализацию
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePage);
+} else {
+    initializePage();
 }

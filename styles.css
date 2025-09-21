@@ -386,10 +386,6 @@ h1, h2, h3, h4, h5, h6 {
 .catalogs {
     padding: 100px 0;
     background-color: white;
-    min-height: 600px; /* Ensure minimum height */
-    opacity: 1 !important; /* Force visibility */
-    visibility: visible !important;
-    transform: translateY(0) !important;
 }
 
 .catalog-grid {

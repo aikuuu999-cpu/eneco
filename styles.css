@@ -619,14 +619,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Table Styles */
+.table-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
 .catalog-table {
     width: 100%;
+    min-width: 600px; /* Минимальная ширина таблицы для горизонтальной прокрутки */
     border-collapse: collapse;
-    margin: 2rem 0;
     background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .catalog-table th,
@@ -843,7 +848,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     /* Header mobile styles */
     .nav {
-        display: none;
         position: absolute;
         top: 100%;
         left: 0;
@@ -851,10 +855,17 @@ h1, h2, h3, h4, h5, h6 {
         background-color: #ffffff;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         padding: 1rem 0;
+        z-index: 999;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
     }
     
     .nav.active {
-        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
     }
     
     .nav-list {
@@ -986,13 +997,20 @@ h1, h2, h3, h4, h5, h6 {
         padding: 1rem;
     }
     
+    .table-container {
+        margin: 1rem 0;
+        border-radius: 6px;
+    }
+    
     .catalog-table {
         font-size: 0.9rem;
+        min-width: 500px; /* Уменьшенная минимальная ширина для мобильных */
     }
     
     .catalog-table th,
     .catalog-table td {
         padding: 8px 10px;
+        white-space: nowrap; /* Предотвращаем перенос текста */
     }
     
     /* Footer mobile styles */
@@ -1137,6 +1155,22 @@ h1, h2, h3, h4, h5, h6 {
     
     .contact-form {
         padding: 1.5rem;
+    }
+    
+    /* Extra mobile styles for tables */
+    .table-container {
+        margin: 0.75rem 0;
+    }
+    
+    .catalog-table {
+        font-size: 0.8rem;
+        min-width: 450px; /* Еще более компактная ширина */
+    }
+    
+    .catalog-table th,
+    .catalog-table td {
+        padding: 6px 8px;
+        font-size: 0.8rem;
     }
     
     /* Footer extra small screens */

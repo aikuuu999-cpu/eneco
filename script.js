@@ -295,20 +295,22 @@ function openCatalog(catalogType) {
             <h2>${catalog.title}</h2>
             <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${catalog.description}</p>
             
-            <table class="catalog-table">
-                <thead>
-                    <tr>
-                        ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
-                    </tr>
-                </thead>
-                <tbody>
-                    ${catalog.table.rows.map(row => `
+            <div class="table-container">
+                <table class="catalog-table">
+                    <thead>
                         <tr>
-                            ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            ${catalog.table.headers.map(header => `<th>${header}</th>`).join('')}
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        ${catalog.table.rows.map(row => `
+                            <tr>
+                                ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
             
             <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
                 <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
@@ -360,20 +362,22 @@ function openSubcategory(catalogType, subcategoryKey) {
             <h2>${subcategory.title}</h2>
             <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem;">${subcategory.description}</p>
             
-            <table class="catalog-table">
-                <thead>
-                    <tr>
-                        ${subcategory.table.headers.map(header => `<th>${header}</th>`).join('')}
-                    </tr>
-                </thead>
-                <tbody>
-                    ${subcategory.table.rows.map(row => `
+            <div class="table-container">
+                <table class="catalog-table">
+                    <thead>
                         <tr>
-                            ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            ${subcategory.table.headers.map(header => `<th>${header}</th>`).join('')}
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        ${subcategory.table.rows.map(row => `
+                            <tr>
+                                ${row.map(cell => `<td>${cell}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
             
             <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
                 <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
@@ -401,20 +405,22 @@ function openItem(catalogType, subcategoryKey, itemKey) {
     modalContent.innerHTML = `
         <h2>${item.title}</h2>
         
-        <table class="catalog-table">
-            <thead>
-                <tr>
-                    ${item.table.headers.map(header => `<th>${header}</th>`).join('')}
-                </tr>
-            </thead>
-            <tbody>
-                ${item.table.rows.map(row => `
+        <div class="table-container">
+            <table class="catalog-table">
+                <thead>
                     <tr>
-                        ${row.map(cell => `<td>${cell}</td>`).join('')}
+                        ${item.table.headers.map(header => `<th>${header}</th>`).join('')}
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${item.table.rows.map(row => `
+                        <tr>
+                            ${row.map(cell => `<td>${cell}</td>`).join('')}
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
         
         <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
             <button class="cta-button" onclick="orderProduct('${catalogType}')">Заказать</button>
@@ -494,11 +500,14 @@ function initMobileMenu() {
     const nav = document.querySelector('.nav');
     
     if (menuToggle && nav) {
-        // Ensure menu is closed by default on mobile
+        // Ensure menu is closed by default on mobile and desktop
         nav.classList.remove('active');
         menuToggle.classList.remove('active');
         
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             nav.classList.toggle('active');
             menuToggle.classList.toggle('active');
         });
@@ -520,7 +529,7 @@ function initMobileMenu() {
             }
         });
         
-        // Close menu when window is resized to desktop size
+        // Handle window resize
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 nav.classList.remove('active');

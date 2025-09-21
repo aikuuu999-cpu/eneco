@@ -1,5 +1,53 @@
     // Общие компоненты сайта - управляются из одного места
 const SiteComponents = {
+    head: `
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Профессиональные трубы и фитинги SML от ЭНЕКО - качественные решения для строительства">
+    <meta name="keywords" content="трубы SML, фитинги, чугунные трубы, канализационные трубы, строительные материалы">
+    <meta name="author" content="ЭНЕКО">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m, e, t, r, i, k, a) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) {
+                return;
+            }
+        }
+        k = e.createElement(t);
+        a = e.getElementsByTagName(t)[0];
+        k.async = 1;
+        k.src = r;
+        a.parentNode.insertBefore(k, a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104214599', 'ym');
+
+    ym(104214599, 'init', {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        accurateTrackBounce: true,
+        trackLinks: true
+    });
+</script>
+<noscript>
+    <div>
+        <img src="https://mc.yandex.ru/watch/104214599" 
+             style="position:absolute; left:-9999px;" 
+             alt="" />
+    </div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+
+`,
+
     header: `
     <!-- Header -->
     <header class="header">
@@ -150,72 +198,28 @@ function loadSiteComponents() {
     // Создаем прелоадер если его нет
     PageLoader.create();
     
-    // Загружаем head элементы только если их еще нет
+    // Загружаем head (сохраняя существующий title)
     const headElement = document.head;
-    if (headElement && !headElement.hasAttribute('data-components-loaded')) {
+    if (headElement) {
         const existingTitle = headElement.querySelector('title');
         const titleText = existingTitle ? existingTitle.textContent : 'ЭНЕКО';
         
-        // Проверяем, есть ли уже базовые элементы
-        const hasCharset = headElement.querySelector('meta[charset]');
-        const hasViewport = headElement.querySelector('meta[name="viewport"]');
-        const hasDescription = headElement.querySelector('meta[name="description"]');
-        const hasFonts = headElement.querySelector('link[href*="fonts.googleapis.com"]');
-        const hasStyles = headElement.querySelector('link[href="styles.css"]');
+        // Создаем временный div для парсинга HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = SiteComponents.head;
         
-        // Добавляем только отсутствующие элементы
-        if (!hasCharset) {
-            const charset = document.createElement('meta');
-            charset.setAttribute('charset', 'UTF-8');
-            headElement.insertBefore(charset, headElement.firstChild);
+        // Очищаем head и добавляем новые элементы
+        headElement.innerHTML = '';
+        
+        // Добавляем title первым
+        const newTitle = document.createElement('title');
+        newTitle.textContent = titleText;
+        headElement.appendChild(newTitle);
+        
+        // Добавляем остальные элементы из компонента
+        while (tempDiv.firstChild) {
+            headElement.appendChild(tempDiv.firstChild);
         }
-        
-        if (!hasViewport) {
-            const viewport = document.createElement('meta');
-            viewport.setAttribute('name', 'viewport');
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-            headElement.appendChild(viewport);
-        }
-        
-        if (!hasDescription) {
-            const description = document.createElement('meta');
-            description.setAttribute('name', 'description');
-            description.setAttribute('content', 'Профессиональные трубы и фитинги SML от ЭНЕКО - качественные решения для строительства');
-            headElement.appendChild(description);
-            
-            const keywords = document.createElement('meta');
-            keywords.setAttribute('name', 'keywords');
-            keywords.setAttribute('content', 'трубы SML, фитинги, чугунные трубы, канализационные трубы, строительные материалы');
-            headElement.appendChild(keywords);
-            
-            const author = document.createElement('meta');
-            author.setAttribute('name', 'author');
-            author.setAttribute('content', 'ЭНЕКО');
-            headElement.appendChild(author);
-        }
-        
-        if (!hasFonts) {
-            const preconnect1 = document.createElement('link');
-            preconnect1.setAttribute('rel', 'preconnect');
-            preconnect1.setAttribute('href', 'https://fonts.googleapis.com');
-            headElement.appendChild(preconnect1);
-            
-            const preconnect2 = document.createElement('link');
-            preconnect2.setAttribute('rel', 'preconnect');
-            preconnect2.setAttribute('href', 'https://fonts.gstatic.com');
-            preconnect2.setAttribute('crossorigin', '');
-            headElement.appendChild(preconnect2);
-            
-            const fontLink = document.createElement('link');
-            fontLink.setAttribute('href', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-            fontLink.setAttribute('rel', 'stylesheet');
-            headElement.appendChild(fontLink);
-        }
-        
-        // Стили уже загружены в loadCriticalStyles(), пропускаем
-        
-        // Отмечаем, что компоненты загружены
-        headElement.setAttribute('data-components-loaded', 'true');
     }
     
     // Загружаем header
@@ -244,28 +248,7 @@ function detectWebPSupport() {
     webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
 
-// Загружаем критические стили синхронно, остальные компоненты - асинхронно
-function loadCriticalStyles() {
-    const headElement = document.head;
-    if (headElement && !headElement.hasAttribute('data-critical-loaded')) {
-        // Добавляем только критические стили синхронно
-        const hasStyles = headElement.querySelector('link[href="styles.css"]');
-        if (!hasStyles) {
-            const styleLink = document.createElement('link');
-            styleLink.setAttribute('rel', 'stylesheet');
-            styleLink.setAttribute('href', 'styles.css');
-            headElement.appendChild(styleLink);
-        }
-        
-        // Отмечаем, что критические стили загружены
-        headElement.setAttribute('data-critical-loaded', 'true');
-    }
-}
-
-// Загружаем критические стили сразу
-loadCriticalStyles();
-
-// Загружаем остальные компоненты
+// Загружаем компоненты сразу при загрузке скрипта (до DOMContentLoaded)
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
         loadSiteComponents();
